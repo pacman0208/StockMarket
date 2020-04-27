@@ -23,4 +23,5 @@ import { LoginComponent } from './component/login/login.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
