@@ -24,8 +24,8 @@ export class MenuStoreageService {
 }
 
 public getMenuList():any[]{
-    console.log('getMenuList method called');
-    console.log(this.menuList)
+    //console.log('getMenuList method called');
+    //console.log(this.menuList)
     return this.menuList;
 }
 

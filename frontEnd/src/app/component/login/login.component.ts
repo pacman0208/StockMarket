@@ -25,11 +25,11 @@ export class LoginComponent implements OnInit {
   constructor(private router:Router,private menuSvc:MenuStoreageService) { }
 
   ngOnInit(): void {
-    
+    this.menuSvc.removeMenuList();//clear menu list
   }
 
   ngAfterViewInit(): void{
-    this.menuSvc.removeMenuList();//clear menu list
+    
   }
 
   login():void{

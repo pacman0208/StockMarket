@@ -13,6 +13,11 @@ import { FooterComponent } from './component/footer/footer.component';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { UserlandingComponent } from './component/userlanding/userlanding.component';
+import { IpoComponent } from './component/ipo/ipo.component';
+import { CompareComponent } from './component/compare/compare.component';
+import { EditProfileComponent } from './component/edit-profile/edit-profile.component';
+import { LogoutComponent } from './component/logout/logout.component';
+import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
 //import service
 import {MenuStoreageService} from './services/menu-storeage.service';
 
@@ -24,7 +29,12 @@ import {MenuStoreageService} from './services/menu-storeage.service';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    UserlandingComponent
+    UserlandingComponent,
+    IpoComponent,
+    CompareComponent,
+    EditProfileComponent,
+    LogoutComponent,
+    SignupConfirmComponent
   ],
   imports: [ //current module dependencies
     BrowserModule,
