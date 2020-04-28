@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userlanding.component.css']
 })
 export class UserlandingComponent implements OnInit {
-
+  currentDate:Date = new Date();
   constructor() { }
 
   ngOnInit(): void {

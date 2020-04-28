@@ -8,16 +8,16 @@ export class MenuStoreageService {
 
   constructor() { }
 
-  menuList:any[] = [];
+  menuList:any[] = [{}];
   /*
   * generate menu list
   */
  public generateList(){
     console.log('generateList method called');
-    this.menuList.push('IPO');
-    this.menuList.push('Compare company/sector');
-    this.menuList.push('Edit profile');
-    this.menuList.push('Logout');
+    this.menuList.push({name:'IPO',url:'ipo'});
+    this.menuList.push({name:'Compare company/sector',url:'compare'});
+    this.menuList.push({name:'Edit profile',url:'edit-profile'});
+    this.menuList.push({name:'Logout',url:'logout'});
     // this.menuList.forEach(element => {
     //   this.set(element,element);
     // });
