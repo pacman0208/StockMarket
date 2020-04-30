@@ -14,10 +14,11 @@ export class MenuStoreageService {
   */
  public generateList(){
     console.log('generateList method called');
+    this.menuList.push({name:'Home',url:'userlanding'});
     this.menuList.push({name:'IPO',url:'ipo'});
     this.menuList.push({name:'Compare company/sector',url:'compare'});
     this.menuList.push({name:'Edit profile',url:'edit-profile'});
-    this.menuList.push({name:'Logout',url:'logout'});
+    this.menuList.push({name:'Logout',url:'login'});
     // this.menuList.forEach(element => {
     //   this.set(element,element);
     // });

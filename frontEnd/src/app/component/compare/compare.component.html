@@ -1,1 +1,49 @@
-<p>compare works!</p>
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+    <form>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <h1 class="mt-5">Stock Management system user page</h1>
+                    <p>current-location: Compare Company/Sector</p>
+                    <hr>
+                    
+                    <div class="form-group">
+                        <label for="company">Select company/Sector</label>
+                        <select class="custom-select" id="company">
+                        <option selected>Choose...</option>
+                        <option *ngFor="let c of comList" value="{{c}}">{{c}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exchanges">Select Stock Exchanges</label>
+                        <select class="custom-select" id="exchanges">
+                        <option selected>Choose...</option>
+                        <option *ngFor="let c of exchanges" value="{{c}}">{{c}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Company name</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="fromDate">From Period</label>
+                        <input type="date" name="fromDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="ToDate">To Period</label>
+                        <input type="date" name="toDate" class="form-control">
+                    </div>
+                    
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight"></div>
+                        <div class="p-2 bd-highlight">
+                            <button type="submit" class="btn btn-primary" (click)="onCompare()">Compare</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+  </main>

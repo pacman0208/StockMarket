@@ -15,6 +15,9 @@ export class IpoComponent implements OnInit {
   public companys:Company[]=[];
 
   public exchanges:string[]=[];
+
+  exchangeSel:string;
+
   constructor() {
    }
 
@@ -22,6 +25,9 @@ export class IpoComponent implements OnInit {
     this.initData();
   }
 
+  switchExchange(){
+    console.log(this.exchangeSel);
+  }
   /**
    * initial page data
    */

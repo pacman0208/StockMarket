@@ -10,7 +10,7 @@
                 
                 <div class="form-group">
                     <label for="company">Choose the company/IPO</label>
-                    <select class="custom-select" id="company">
+                    <select class="custom-select" id="company" cha [(ngModel)]="exchangeSel">
                       <option selected>Choose...</option>
                       <option *ngFor="let item of exchanges" value="{{item}}">{{item}}</option>
                     </select>
