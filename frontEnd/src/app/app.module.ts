@@ -18,6 +18,7 @@ import { CompareComponent } from './component/compare/compare.component';
 import { EditProfileComponent } from './component/edit-profile/edit-profile.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
+import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
 //import service
 import {MenuStoreageService} from './services/menu-storeage.service';
 
@@ -34,7 +35,8 @@ import {MenuStoreageService} from './services/menu-storeage.service';
     CompareComponent,
     EditProfileComponent,
     LogoutComponent,
-    SignupConfirmComponent
+    SignupConfirmComponent,
+    CompareDetailComponent
   ],
   imports: [ //current module dependencies
     BrowserModule,

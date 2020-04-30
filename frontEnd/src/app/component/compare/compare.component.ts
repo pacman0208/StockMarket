@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-compare',
@@ -12,12 +13,12 @@ export class CompareComponent implements OnInit {
 
   public exchanges:string[]=['NSE','BSE'];
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
   onCompare(){
-    
+    this.router.navigate(['/compareDetail']);
   }
 }

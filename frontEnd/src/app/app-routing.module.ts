@@ -12,6 +12,7 @@ import { CompareComponent } from './component/compare/compare.component';
 import { EditProfileComponent } from './component/edit-profile/edit-profile.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
+import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
 
 const routes: Routes = [
   {path:"login",component:LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:"edit-profile",component:EditProfileComponent},
   {path:"logout",component:LogoutComponent},
   {path:"signupConfirm",component:SignupConfirmComponent},
+  {path:"compareDetail",component:CompareDetailComponent},
   //if there's no path match, then redirect to this path
   {path:"**",redirectTo:"login"}
 ];
