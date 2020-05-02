@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
-import {MenuStoreageService} from '../../services/menu-storeage.service';
-interface User{
-  username:string;
-  password:string;
-}
+import {MenuStoreageService} from '../../../../services/menu-storeage.service';
+import {User} from '../../../../model/User';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,13 +33,13 @@ export class LoginComponent implements OnInit {
     if(this.user.username==="test" && this.user.password==="111"){
       this.msg='';
       this.menuSvc.generateList();//generate menu item
-      this.router.navigate(['/userlanding']);
+      this.router.navigate(['/user/userlanding']);
     }else{
       this.msg='username/password incorrect!';
     }
   }
 
   toSignup():void{
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/user/signup']);
   }
 }

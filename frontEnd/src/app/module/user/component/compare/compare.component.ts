@@ -19,6 +19,6 @@ export class CompareComponent implements OnInit {
   }
 
   onCompare(){
-    this.router.navigate(['/compareDetail']);
+    this.router.navigate(['/user/compareDetail']);
   }
 }

@@ -8,35 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //import component
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './component/header/header.component';
-import { FooterComponent } from './component/footer/footer.component';
-import { LoginComponent } from './component/login/login.component';
-import { SignupComponent } from './component/signup/signup.component';
-import { UserlandingComponent } from './component/userlanding/userlanding.component';
-import { IpoComponent } from './component/ipo/ipo.component';
-import { CompareComponent } from './component/compare/compare.component';
-import { EditProfileComponent } from './component/edit-profile/edit-profile.component';
-import { LogoutComponent } from './component/logout/logout.component';
-import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
-import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
 //import service
 import {MenuStoreageService} from './services/menu-storeage.service';
 
 
 @NgModule({
   declarations: [ //config current project component
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    LoginComponent,
-    SignupComponent,
-    UserlandingComponent,
-    IpoComponent,
-    CompareComponent,
-    EditProfileComponent,
-    LogoutComponent,
-    SignupConfirmComponent,
-    CompareDetailComponent
+    AppComponent
   ],
   imports: [ //current module dependencies
     BrowserModule,
