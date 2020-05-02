@@ -13,12 +13,24 @@ import { AddExchangeComponent } from './component/add-exchange/add-exchange.comp
 
 const routes: Routes = [
   // {path:'addCompany',component:AddCompanyComponent},
+  
   {
     path:'',
     component:AdminComponent,
     children:[
-      {path:'login',component:LoginComponent}
+      {path:'login',component:LoginComponent},
+      {path:'addCompany',component:AddCompanyComponent},
+      {path:'importData',component:ImportDataComponent},
+      {path:'landing',component:LandingComponent},
+      {path:'companyList',component:CompanyListComponent},
+      {path:'exchangeList',component:ExchangeListComponent},
+      {path:'addExchange',component:AddExchangeComponent},
+      {path:'exchangeList',component:ExchangeListComponent},
     ]
+  },
+  {
+    path:"**",
+    redirectTo:'login'
   }
 ];
 

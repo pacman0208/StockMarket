@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -11,6 +12,8 @@ import { LandingComponent } from './component/landing/landing.component';
 import { CompanyListComponent } from './component/company-list/company-list.component';
 import { ExchangeListComponent } from './component/exchange-list/exchange-list.component';
 import { AddExchangeComponent } from './component/add-exchange/add-exchange.component';
+import { HeaderComponent } from './component/header/header.component';
+import { LeftMenuComponent } from './component/left-menu/left-menu.component';
 
 
 @NgModule({
@@ -23,11 +26,19 @@ import { AddExchangeComponent } from './component/add-exchange/add-exchange.comp
     LandingComponent,
     CompanyListComponent,
     ExchangeListComponent,
-    AddExchangeComponent
+    AddExchangeComponent,
+    HeaderComponent,
+    LeftMenuComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    FormsModule
   ]
 })
-export class AdminModule { }
+export class AdminModule { 
+  constructor(){
+
+  }
+
+}

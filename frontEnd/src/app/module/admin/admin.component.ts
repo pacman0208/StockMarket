@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import {AuthService} from "./service/auth.service";
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  loginUser:string;
+  constructor(private authSvc:AuthService) { }
 
   ngOnInit(): void {
   }
 
+  ngDoCheck(): void{
+    console.log('login user:'+this.loginUser);
+    this.loginUser = this.authSvc.getLoginUser();
+  }
 }

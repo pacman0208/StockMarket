@@ -1,0 +1,20 @@
+.left-menu{
+    border-width: 1px;
+    background-color: #f8f9fa;
+    width: 20%;
+    height: 100%;
+    padding-top: 3rem;
+    float: left;
+}
+.left-menu ul{
+    padding-left: 0rem;
+    margin-left: 0rem;
+}
+.left-menu li{
+    padding-bottom: 1rem;
+    list-style-type: none;
+}
+
+.left-menu li a {
+    text-decoration: none;
+}

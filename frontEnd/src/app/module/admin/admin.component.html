@@ -1,2 +1,7 @@
-<h2>welcome to admin page</h2>
-<router-outlet></router-outlet>
+<app-header *ngIf="loginUser"></app-header>
+<div class="content" *ngIf="loginUser">
+    <router-outlet></router-outlet>
+</div>
+<router-outlet *ngIf="!loginUser"></router-outlet>
+
+<app-left-menu *ngIf="loginUser"></app-left-menu>

@@ -9,8 +9,10 @@ export class MenuStoreageService {
   constructor() { }
 
   menuList:any[] = [{}];
+
+  leftMenuList:any[]=[{}];
   /*
-  * generate menu list
+  * generate menu list(for user page)
   */
  public generateList(){
     console.log('generateList method called');
@@ -24,15 +26,43 @@ export class MenuStoreageService {
     // });
 }
 
-public getMenuList():any[]{
-    //console.log('getMenuList method called');
-    //console.log(this.menuList)
-    return this.menuList;
+/**
+ * for user page
+ */
+public removeMenuList(){
+  console.log('removeMenuList method called');
+  this.menuList = [];
 }
 
-public removeMenuList(){
-    console.log('removeMenuList method called');
-    this.menuList = [];
+/**
+ * for user page
+ */
+public getMenuList():any[]{
+  return this.menuList;
+}
+/**
+ * for admin page
+ */
+public generateLeftMenu(){
+  
+  console.log('generateLeftMenu method called');
+  this.leftMenuList.push({name:'Manage Stock Exchanges',url:'admin/exchangeList'});
+  this.leftMenuList.push({name:'Mange Company',url:'admin/companyList'});
+  this.leftMenuList.push({name:'Import Data',url:'admin/importData'});
+  this.leftMenuList.push({name:'Logout',url:'admin/login'});
+}
+/**
+ * for admin page
+ */
+public removeLeftMenuList(){
+  this.leftMenuList = [];
+}
+
+/**
+ * for admin page
+ */
+public getLeftMenuList():any[]{
+  return this.leftMenuList;
 }
 private set(key:string,value){
   localStorage.setItem(key, JSON.stringify(value));
