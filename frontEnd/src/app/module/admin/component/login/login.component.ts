@@ -11,7 +11,7 @@ import {User} from '../../../../model/User';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  head:string = 'Welcome to Stock Market system, Please sign in';
+  head:string = 'Sign in as admin';
 
   msg:string='';
 

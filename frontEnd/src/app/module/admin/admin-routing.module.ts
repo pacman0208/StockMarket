@@ -26,6 +26,7 @@ const routes: Routes = [
       {path:'exchangeList',component:ExchangeListComponent},
       {path:'addExchange',component:AddExchangeComponent},
       {path:'exchangeList',component:ExchangeListComponent},
+      {path:'importResult',component:ImportDataResultComponent},
     ]
   },
   {

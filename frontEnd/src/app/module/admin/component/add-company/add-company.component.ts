@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCompanyComponent implements OnInit {
 
+  exchanges:string[]=['NES','BES'];
   constructor() { }
 
   ngOnInit(): void {

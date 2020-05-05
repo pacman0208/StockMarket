@@ -1,7 +1,7 @@
 <app-header *ngIf="loginUser"></app-header>
-<div class="content" *ngIf="loginUser">
+<div [ngClass]="{'content': loginUser}">
+    
     <router-outlet></router-outlet>
 </div>
-<router-outlet *ngIf="!loginUser"></router-outlet>
 
 <app-left-menu *ngIf="loginUser"></app-left-menu>

@@ -1,1 +1,28 @@
-<p>company-list works!</p>
+<h1 class="display-4">Stock Market System admin page</h1>
+
+<p class="lead">Location:Company list</p>
+<hr/>
+<div class="container">
+    <button class="btn btn-primary" (click)="newExchange()">Add New</button>
+    <table class="table table-striped">
+        <thead >
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Stock Code</th>
+            <th scope="col">Stock Exchange</th>
+            <th scope="col">Company name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of companys;let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{c.code}}</td>
+            <td>{{c.exchange}}</td>
+            <td>{{c.name}}</td>
+            <td>Detail</td>
+          </tr>
+        </tbody>
+    </table>
+
+</div>
