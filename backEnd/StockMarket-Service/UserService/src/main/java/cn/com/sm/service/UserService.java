@@ -1,65 +1,17 @@
 package cn.com.sm.service;
 
 import cn.com.sm.entity.UsersEntity;
-import cn.com.sm.repo.UserRepos;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.Optional;
+public interface UserService {
+    Iterable<UsersEntity> getAllUsers();
 
-/**
- * User Service
- */
-@Service
-public class UserService {
-    @Resource
-    private UserRepos userRepos;
+    Iterable<UsersEntity> getUsersByNameAndPassword(String name,String password);
 
-    /**
-     * get all users entity
-     * @return
-     */
-    public Iterable<UsersEntity> getAllUsers(){
-        return userRepos.findAll();
-    }
+    UsersEntity getUserById(Integer id);
 
+    UsersEntity registerUser(UsersEntity user);
 
-    /**
-     * get user by username and password
-     * @param name
-     * @param password
-     * @return
-     */
-    public  Iterable<UsersEntity> getUsersByNameAndPassword(String name,String password){
-        return userRepos.getUsersByUsernameAndPassword(name,password);
-    }
+    UsersEntity update(UsersEntity user);
 
-    /**
-     * get user by id
-     * @param id
-     * @return
-     */
-    public UsersEntity getUserById(Integer id){
-        Optional<UsersEntity> optional = userRepos.findById(id);
-
-        return optional.isPresent()?optional.get():null;
-    }
-
-    /**
-     * user register
-     * @param user
-     * @return
-     */
-    public UsersEntity registerUser(UsersEntity user){
-        return userRepos.saveAndFlush(user);
-    }
-
-    /**
-     * update user
-     * @param user
-     * @return
-     */
-    public UsersEntity update(UsersEntity user){
-        return userRepos.save(user);
-    }
+    UsersEntity activateUser(int id) throws Exception;
 }

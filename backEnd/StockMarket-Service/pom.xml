@@ -8,6 +8,7 @@
         <module>AuthService</module>
         <module>UserService</module>
         <module>StockService</module>
+        <module>common</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

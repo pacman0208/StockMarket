@@ -14,7 +14,7 @@ import java.util.Date;
 public class UserServiceTest {
 
     @Resource
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Test
     public void testGetAllUsers(){
@@ -51,4 +51,13 @@ public class UserServiceTest {
     }
 
 
+    @Test
+    public void testActivateUser(){
+        int id=3;
+        try {
+            System.out.println(userService.activateUser(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
