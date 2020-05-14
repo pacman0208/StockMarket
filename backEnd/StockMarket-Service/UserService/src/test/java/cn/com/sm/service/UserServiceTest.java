@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 @SpringBootTest(classes = UserServiceApplication.class)
@@ -33,4 +35,20 @@ public class UserServiceTest {
         Integer id = 1;
         System.out.println(userService.getUserById(id));
     }
+
+    @Test
+    public void testRegisterUser(){
+        UsersEntity user = new UsersEntity();
+        user.setMobileNumber("13800138000");
+        user.setEmail("aaa@qq.com");
+        user.setConfirmed("0");
+        user.setUsername("lee");
+        user.setPassword("123321");
+        user.setUserType("0");
+        user.setCreateTsp(new Timestamp(new Date().getTime()));
+        user.setLastChgTsp(new Timestamp(new Date().getTime()));
+        System.out.println(userService.registerUser(user));
+    }
+
+
 }

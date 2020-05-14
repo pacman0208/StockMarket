@@ -44,4 +44,22 @@ public class UserService {
 
         return optional.isPresent()?optional.get():null;
     }
+
+    /**
+     * user register
+     * @param user
+     * @return
+     */
+    public UsersEntity registerUser(UsersEntity user){
+        return userRepos.saveAndFlush(user);
+    }
+
+    /**
+     * update user
+     * @param user
+     * @return
+     */
+    public UsersEntity update(UsersEntity user){
+        return userRepos.save(user);
+    }
 }
