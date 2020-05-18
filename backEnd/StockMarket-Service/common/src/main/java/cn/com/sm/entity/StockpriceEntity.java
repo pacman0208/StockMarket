@@ -93,4 +93,16 @@ public class StockpriceEntity {
     public int hashCode() {
         return Objects.hash(id, currentPrice, date, time, lastChgTsp, createTsp);
     }
+
+    @Override
+    public String toString() {
+        return "StockpriceEntity{" +
+                "id=" + id +
+                ", currentPrice=" + currentPrice +
+                ", date=" + date +
+                ", time=" + time +
+                ", lastChgTsp=" + lastChgTsp +
+                ", createTsp=" + createTsp +
+                '}';
+    }
 }

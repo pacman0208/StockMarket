@@ -103,4 +103,17 @@ public class StockexchangeEntity {
     public int hashCode() {
         return Objects.hash(id, exchangeName, brief, contactAddress, remarks, lastChgTsp, createTsp);
     }
+
+    @Override
+    public String toString() {
+        return "StockexchangeEntity{" +
+                "id=" + id +
+                ", exchangeName='" + exchangeName + '\'' +
+                ", brief='" + brief + '\'' +
+                ", contactAddress='" + contactAddress + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", lastChgTsp=" + lastChgTsp +
+                ", createTsp=" + createTsp +
+                '}';
+    }
 }

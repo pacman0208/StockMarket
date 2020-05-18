@@ -67,4 +67,14 @@ public class SectorsEntity {
     public int hashCode() {
         return Objects.hash(id, sectorName, lastChgTsp, createTsp);
     }
+
+    @Override
+    public String toString() {
+        return "SectorsEntity{" +
+                "id=" + id +
+                ", sectorName='" + sectorName + '\'' +
+                ", lastChgTsp=" + lastChgTsp +
+                ", createTsp=" + createTsp +
+                '}';
+    }
 }

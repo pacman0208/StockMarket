@@ -19,6 +19,7 @@ CompanyEntity {
     private Timestamp lastChgTsp;
     private Timestamp createTsp;
 
+    private SectorsEntity sectorsBySectorsId;
     @Id
     @Column(name = "id")
     public int getId() {
@@ -119,6 +120,15 @@ CompanyEntity {
         this.createTsp = createTsp;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "Sectors_id", referencedColumnName = "id", nullable = false)
+    public SectorsEntity getSectorsBySectorsId() {
+        return sectorsBySectorsId;
+    }
+
+    public void setSectorsBySectorsId(SectorsEntity sectorsBySectorsId) {
+        this.sectorsBySectorsId = sectorsBySectorsId;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,5 +149,22 @@ CompanyEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, stockCode, companyName, turnover, ceo, boardOfDirectors, listInExchanges, briefIntro, lastChgTsp, createTsp);
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyEntity{" +
+                "id=" + id +
+                ", stockCode='" + stockCode + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", turnover=" + turnover +
+                ", ceo='" + ceo + '\'' +
+                ", boardOfDirectors='" + boardOfDirectors + '\'' +
+                ", listInExchanges='" + listInExchanges + '\'' +
+                ", briefIntro='" + briefIntro + '\'' +
+                ", lastChgTsp=" + lastChgTsp +
+                ", createTsp=" + createTsp +
+                ", sectorsBySectorsId=" + sectorsBySectorsId +
+                '}';
     }
 }
