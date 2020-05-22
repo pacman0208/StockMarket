@@ -3,8 +3,9 @@ server:
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true #prefer to use ip for client
   client:
-    registerWithEureka: true
+    registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

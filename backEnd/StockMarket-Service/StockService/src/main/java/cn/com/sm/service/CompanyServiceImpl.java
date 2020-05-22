@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
@@ -27,12 +28,14 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public Iterable<CompanyEntity> listCompany() {
+    public Iterable<CompanyEntity> listCompanys() {
         return companyRepo.findAll();
     }
 
     @Override
     public CompanyEntity getCompanyById(int id) {
-        return companyRepo.getOne(id);
+        Optional<CompanyEntity> entity = companyRepo.findById(id);
+        LOG.info("company:",entity);
+        return entity.isPresent()?entity.get():null;
     }
 }

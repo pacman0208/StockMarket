@@ -42,7 +42,7 @@ public class UserServiceTest {
         user.setMobileNumber("13800138000");
         user.setEmail("aaa@qq.com");
         user.setConfirmed("0");
-        user.setUsername("lee");
+        user.setUsername("aaa");
         user.setPassword("123321");
         user.setUserType("0");
         user.setCreateTsp(new Timestamp(new Date().getTime()));

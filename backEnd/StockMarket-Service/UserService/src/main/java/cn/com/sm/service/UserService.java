@@ -14,4 +14,6 @@ public interface UserService {
     UsersEntity update(UsersEntity user);
 
     UsersEntity activateUser(int id) throws Exception;
+
+    void deleteUser(int id);
 }

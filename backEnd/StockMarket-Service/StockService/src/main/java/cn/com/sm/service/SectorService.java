@@ -6,4 +6,6 @@ public interface SectorService {
     SectorsEntity save(SectorsEntity sector);
 
     SectorsEntity getSectorById(Integer id);
+
+    Iterable<SectorsEntity> listAllSectors();
 }

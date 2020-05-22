@@ -73,4 +73,8 @@ public class UserServiceImpl implements UserService {
         }
         throw new Exception("activate user failed..");
     }
+
+    public void deleteUser(int id){
+        userRepos.deleteById(id);
+    }
 }

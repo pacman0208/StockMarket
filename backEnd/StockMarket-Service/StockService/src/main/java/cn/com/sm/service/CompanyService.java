@@ -7,7 +7,7 @@ public interface CompanyService {
 
     CompanyEntity update(CompanyEntity company);
 
-    Iterable<CompanyEntity> listCompany();
+    Iterable<CompanyEntity> listCompanys();
 
     CompanyEntity getCompanyById(int id);
 }

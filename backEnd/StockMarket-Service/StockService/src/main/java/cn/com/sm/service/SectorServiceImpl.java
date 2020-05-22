@@ -22,4 +22,9 @@ public class SectorServiceImpl implements SectorService {
     public SectorsEntity getSectorById(Integer id) {
         return sectorRepo.getOne(id);
     }
+
+    @Override
+    public Iterable<SectorsEntity> listAllSectors() {
+        return sectorRepo.findAll();
+    }
 }

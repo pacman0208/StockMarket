@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8622cd5a-36df-4526-b660-f3d74239b055" name="Default Changelist" comment="" />
+    <list default="true" id="8622cd5a-36df-4526-b660-f3d74239b055" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/controller/CompanyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/util/BaseErrorInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/util/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/util/ResultBody.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/util/ResultEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/CompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/CompanyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/CompanyServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/SectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/SectorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/SectorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/main/java/cn/com/sm/service/SectorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/test/java/cn/com/sm/service/CompanyServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/StockService/src/test/java/cn/com/sm/service/CompanyServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/src/main/java/cn/com/sm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/src/main/java/cn/com/sm/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/UserService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/exception/StockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/common/src/main/java/cn/com/sm/exception/StockException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backEnd/StockMarket-Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backEnd/StockMarket-Service/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,13 +52,21 @@
       <option name="presentableId" value="Default" />
       <updated>1589007981369</updated>
       <workItem from="1589007983208" duration="27000" />
+      <workItem from="1590023962393" duration="919000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1589008011112">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590024864414">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589008011112" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590024864414" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590024879523">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590024879523" />
   </component>
 </project>

@@ -1,13 +1,20 @@
 package cn.com.sm.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "company", schema = "mydb", catalog = "")
-public class
-CompanyEntity {
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })//add this annotation to avoid jackson try to parse this attr and get error
+@EntityListeners(AuditingEntityListener.class)
+public class CompanyEntity {
     private int id;
     private String stockCode;
     private String companyName;
@@ -16,7 +23,11 @@ CompanyEntity {
     private String boardOfDirectors;
     private String listInExchanges;
     private String briefIntro;
+
+    @LastModifiedDate
     private Timestamp lastChgTsp;
+
+    @CreatedDate
     private Timestamp createTsp;
 
     private SectorsEntity sectorsBySectorsId;
