@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResultBody exceptionHandler(Exception e){
         logger.error("exception happened:"+e);
+        e.printStackTrace();
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
             return ResultBody.error(ResultEnum.NOT_FOUND);
         }

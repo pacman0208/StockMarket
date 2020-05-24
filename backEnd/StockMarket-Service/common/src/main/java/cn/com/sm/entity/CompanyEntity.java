@@ -13,10 +13,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "company", schema = "mydb", catalog = "")
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })//add this annotation to avoid jackson try to parse this attr and get error
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)//add auto fill for createdDate and LastModifiedDate
 public class CompanyEntity {
     private int id;
     private String stockCode;
+    private String exchangeName;
     private String companyName;
     private Double turnover;
     private String ceo;
@@ -49,6 +50,16 @@ public class CompanyEntity {
 
     public void setStockCode(String stockCode) {
         this.stockCode = stockCode;
+    }
+
+    @Basic
+    @Column(name="exchange_name")
+    public String getExchangeName() {
+        return exchangeName;
+    }
+
+    public void setExchangeName(String exchangeName) {
+        this.exchangeName = exchangeName;
     }
 
     @Basic
@@ -140,26 +151,29 @@ public class CompanyEntity {
     public void setSectorsBySectorsId(SectorsEntity sectorsBySectorsId) {
         this.sectorsBySectorsId = sectorsBySectorsId;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CompanyEntity that = (CompanyEntity) o;
-        return id == that.id &&
-                Objects.equals(stockCode, that.stockCode) &&
-                Objects.equals(companyName, that.companyName) &&
-                Objects.equals(turnover, that.turnover) &&
-                Objects.equals(ceo, that.ceo) &&
-                Objects.equals(boardOfDirectors, that.boardOfDirectors) &&
-                Objects.equals(listInExchanges, that.listInExchanges) &&
-                Objects.equals(briefIntro, that.briefIntro) &&
-                Objects.equals(lastChgTsp, that.lastChgTsp) &&
-                Objects.equals(createTsp, that.createTsp);
+        CompanyEntity entity = (CompanyEntity) o;
+        return id == entity.id &&
+                Objects.equals(stockCode, entity.stockCode) &&
+                Objects.equals(exchangeName, entity.exchangeName) &&
+                Objects.equals(companyName, entity.companyName) &&
+                Objects.equals(turnover, entity.turnover) &&
+                Objects.equals(ceo, entity.ceo) &&
+                Objects.equals(boardOfDirectors, entity.boardOfDirectors) &&
+                Objects.equals(listInExchanges, entity.listInExchanges) &&
+                Objects.equals(briefIntro, entity.briefIntro) &&
+                Objects.equals(lastChgTsp, entity.lastChgTsp) &&
+                Objects.equals(createTsp, entity.createTsp) &&
+                Objects.equals(sectorsBySectorsId, entity.sectorsBySectorsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, stockCode, companyName, turnover, ceo, boardOfDirectors, listInExchanges, briefIntro, lastChgTsp, createTsp);
+        return Objects.hash(id, stockCode, exchangeName, companyName, turnover, ceo, boardOfDirectors, listInExchanges, briefIntro, lastChgTsp, createTsp, sectorsBySectorsId);
     }
 
     @Override
@@ -167,6 +181,7 @@ public class CompanyEntity {
         return "CompanyEntity{" +
                 "id=" + id +
                 ", stockCode='" + stockCode + '\'' +
+                ", exchangeName='" + exchangeName + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", turnover=" + turnover +
                 ", ceo='" + ceo + '\'' +

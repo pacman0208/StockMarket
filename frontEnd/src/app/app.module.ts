@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 //import service
 import {MenuStoreageService} from './services/menu-storeage.service';
+//import httpclient module
+import {HttpClientModule} from "@angular/common/http";
+import { Browser } from 'protractor';
 
 
 @NgModule({
@@ -20,10 +23,19 @@ import {MenuStoreageService} from './services/menu-storeage.service';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [// services
-    MenuStoreageService
+    MenuStoreageService,
+    {
+      provide:'COMPANY_BASE_URL',
+      useValue:'http://localhost:8882/api/company'
+    },
+    {
+      provide:'SECTOR_BASE_URL',
+      useValue:'http://localhost:8882/api/sector'
+    }
   ], 
   bootstrap: [AppComponent] //main view
 })

@@ -63,7 +63,7 @@ public class UserController {
     public ResultBody testRestTemplate(){
 //        CompanyEntity company = restTemplate.getForObject("http://127.0.0.1:8882/api/company/detail/1", CompanyEntity.class);
 //        ResponseEntity<ResultBody> resultEntity=restTemplate.getForEntity("http://127.0.0.1:8882/api/company/detail/1", ResultBody.class);
-        ResponseEntity<ResultBody> resultEntity=restTemplate.getForEntity("http://stock/api/company/detail/1", ResultBody.class);
+        ResponseEntity<ResultBody> resultEntity=restTemplate.getForEntity("http://stock/api/company/1", ResultBody.class);
         System.out.println("get company from user service:"+resultEntity.getBody());
         return ResultBody.success(resultEntity.getBody());
     }

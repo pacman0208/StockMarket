@@ -8,4 +8,8 @@ public interface SectorService {
     SectorsEntity getSectorById(Integer id);
 
     Iterable<SectorsEntity> listAllSectors();
+
+    void deleteById(Integer id);
+
+    SectorsEntity update(SectorsEntity sector);
 }

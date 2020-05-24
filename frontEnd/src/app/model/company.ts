@@ -1,10 +1,14 @@
 export interface Company {
-    name:string;
-    code:string;
+    id:string;
+    companyName:string;
+    stockCode:string;
     turnOver:string;
     ceo:string;
-    sector:string;
-    ipoDate:string;
-    exchange:string;
-    intro:string;
+    //ipoDate:string;
+    exchangeName:string;
+    briefIntro:string;
+    sectorsBySectorsId:{
+        id:string;
+        sectorName:string;
+    }
 }

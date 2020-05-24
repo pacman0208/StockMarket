@@ -5,6 +5,7 @@ import cn.com.sm.entity.CompanyEntity;
 import cn.com.sm.entity.SectorsEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -18,12 +19,14 @@ public class CompanyServiceTest {
     private SectorService sService;
 
     @Transactional
+    @Rollback(false)
     @Test
     public void addCompanyTest() {
         CompanyEntity company = new CompanyEntity();
         SectorsEntity sectorById = sService.getSectorById(1);
         System.out.println("sector:"+sectorById);
         company.setSectorsBySectorsId(sectorById);
+        company.setExchangeName("NSE");
         company.setCeo("Lee");
         company.setBoardOfDirectors("test");
         company.setCompanyName("Netease");

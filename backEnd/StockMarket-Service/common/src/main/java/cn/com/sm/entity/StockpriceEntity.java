@@ -1,5 +1,9 @@
 package cn.com.sm.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -8,12 +12,15 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "stockprice", schema = "mydb", catalog = "")
+@EntityListeners(AuditingEntityListener.class)
 public class StockpriceEntity {
     private int id;
     private Double currentPrice;
     private Date date;
     private Time time;
+    @LastModifiedDate
     private Timestamp lastChgTsp;
+    @CreatedDate
     private Timestamp createTsp;
 
     @Id

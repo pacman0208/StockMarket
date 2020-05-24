@@ -38,4 +38,9 @@ public class CompanyServiceImpl implements CompanyService{
         LOG.info("company:",entity);
         return entity.isPresent()?entity.get():null;
     }
+
+    @Override
+    public void deleteCompany(int id) {
+        companyRepo.deleteById(id);
+    }
 }

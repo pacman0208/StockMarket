@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/api/company")
+@CrossOrigin("${sm.frontend.url}")
 public class CompanyController {
 
     @Resource
@@ -21,20 +21,27 @@ public class CompanyController {
         throw new Exception("internal exception");
     }
 
-    @GetMapping("/allCompanys")
+    @GetMapping("/companyList")
     public ResultBody listAllCompanys(){
         return ResultBody.success(companyService.listCompanys());
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/{id}")
     public ResultBody companyDetail(@PathVariable Integer id){
         System.out.println("ip:"+ip+",port:"+port);
         return ResultBody.success(companyService.getCompanyById(id));
     }
 
-    @PostMapping("/add")
-    public ResultBody addCompany(CompanyEntity company){
+    @PostMapping
+    public ResultBody addCompany(@RequestBody  CompanyEntity company){
+        System.out.println("Got from frontend:"+company);
         return ResultBody.success(companyService.addCompany(company));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResultBody deleteCompany(@PathVariable Integer id){
+        companyService.deleteCompany(id);
+        return ResultBody.success();
     }
 
     @Value("${server.port}")

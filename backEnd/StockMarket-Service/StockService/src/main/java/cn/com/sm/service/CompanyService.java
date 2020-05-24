@@ -10,4 +10,6 @@ public interface CompanyService {
     Iterable<CompanyEntity> listCompanys();
 
     CompanyEntity getCompanyById(int id);
+
+    void deleteCompany(int id);
 }

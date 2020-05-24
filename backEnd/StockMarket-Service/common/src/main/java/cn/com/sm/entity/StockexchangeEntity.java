@@ -1,18 +1,25 @@
 package cn.com.sm.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "stockexchange", schema = "mydb", catalog = "")
+@EntityListeners(AuditingEntityListener.class)
 public class StockexchangeEntity {
     private int id;
     private String exchangeName;
     private String brief;
     private String contactAddress;
     private String remarks;
+    @LastModifiedDate
     private Timestamp lastChgTsp;
+    @CreatedDate
     private Timestamp createTsp;
 
     @Id

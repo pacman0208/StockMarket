@@ -25,7 +25,7 @@ public class UserServiceTest {
     @Test
     public void testGetUsersByNameAndPassword(){
         String username="lee";
-        String pwd="123";
+        String pwd="123321";
         Iterable<UsersEntity> it =userService.getUsersByNameAndPassword(username,pwd);
         it.forEach(System.out::println);
     }
@@ -42,7 +42,7 @@ public class UserServiceTest {
         user.setMobileNumber("13800138000");
         user.setEmail("aaa@qq.com");
         user.setConfirmed("0");
-        user.setUsername("aaa");
+        user.setUsername("lee");
         user.setPassword("123321");
         user.setUserType("0");
         user.setCreateTsp(new Timestamp(new Date().getTime()));

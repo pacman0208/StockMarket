@@ -27,4 +27,14 @@ public class SectorServiceImpl implements SectorService {
     public Iterable<SectorsEntity> listAllSectors() {
         return sectorRepo.findAll();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        sectorRepo.deleteById(id);
+    }
+
+    @Override
+    public SectorsEntity update(SectorsEntity sector) {
+        return sectorRepo.saveAndFlush(sector);
+    }
 }
