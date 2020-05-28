@@ -9,6 +9,7 @@
         <module>UserService</module>
         <module>StockService</module>
         <module>common</module>
+        <module>ZuulService</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

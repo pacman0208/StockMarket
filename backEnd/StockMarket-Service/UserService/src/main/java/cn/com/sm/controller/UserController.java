@@ -1,19 +1,14 @@
 package cn.com.sm.controller;
 
-import cn.com.sm.entity.CompanyEntity;
 import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.service.UserService;
-import cn.com.sm.service.UserServiceImpl;
 import cn.com.sm.util.ResultBody;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import javax.xml.transform.Result;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")

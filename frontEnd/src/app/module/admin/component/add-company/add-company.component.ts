@@ -56,7 +56,6 @@ export class AddCompanyComponent implements OnInit {
     };
     var api = this.BASE_URL;
     const data:string = JSON.stringify(this.company);
-    console.log(data);
     this.http.post(api,this.company,httpOptions).subscribe((resp:any)=>{
       console.log(resp.msg);
       if(resp.code=='200'){

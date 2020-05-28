@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 @RequestMapping("/api/sector")
 @RestController
-@CrossOrigin("${sm.frontend.url}")
+//@CrossOrigin("${sm.frontend.url}") //This annotation is used for CORS for this controller
 public class SectorController {
     @Resource
     private SectorService sectorService;
