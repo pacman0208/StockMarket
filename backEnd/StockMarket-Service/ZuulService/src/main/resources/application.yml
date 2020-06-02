@@ -10,32 +10,30 @@ spring:
     pool-size: 10
     driver-class-name: com.mysql.cj.jdbc.Driver
 zuul:
-  sensitiveHeaders: Access-Control-Allow-Origin,Cookie,Set-Cookie  #配置头部黑名单，它包含Zuul不会传播到下游服务的敏感头部。同时意识着Authorization将被放行
-  ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+  sensitive-headers: Cookie,Set-Cookie
   ignored-services: '*'
   prefix: /api
   host:
     connect-timeout-millis: 30000
     socket-timeout-millis: 30000
   routes:
-    cloud-user-service: /cloud-user-service/**   #重启机器后要多等一段时间才访问，注册要有三次心跳后才注册成功
-    cloud-auth-service: /cloud-auth-service/**
-  #      user-service:   #静态路由
-  #         path: /cloud-simple-service/**
-  #         url: http://localhost:8081/
-  #添加代理头
-  add-proxy-headers: true
+    userService: /user/**
+    stockService: /company/**
+    auth: /auth/**
 
-  eureka:
-    instance:
-      preferIpAddress: true
-      client:
-        registerWithEureka: true
-        fetchRegistry: true
-        serviceUrl:
-          defaultZone: http://localhost:8761/eureka/
-  logging:
-    level:
-      com.netflix: DEBUG
-      com.bruin.cloud.zuul.filters: DEBUG
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    com.netflix: DEBUG
+    com.bruin.cloud.zuul.filters: DEBUG
+
 

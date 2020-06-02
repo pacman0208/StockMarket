@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AuthenticationFilter extends ZuulFilter {
+public class AuthenticationFilter  extends ZuulFilter{//
     public static final String AUTHORIZATION = "Authorization";
     private Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
@@ -23,7 +23,7 @@ public class AuthenticationFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 1;
+        return 0;
     }
 
     @Override
@@ -31,6 +31,7 @@ public class AuthenticationFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         String uri = request.getRequestURI();
+        System.out.println("request uri:"+uri);
         if(logger.isDebugEnabled()){
             logger.debug("request uri:",uri);
         }

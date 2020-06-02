@@ -24,5 +24,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
+
+        <!-- custom common dependency-->
+        <dependency>
+            <groupId>com.stock</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api/user")
+//@RequestMapping("/api/user")
 public class UserController {
     @Resource
     private UserService userService;

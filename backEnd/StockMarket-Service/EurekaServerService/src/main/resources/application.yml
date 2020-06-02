@@ -1,15 +1,29 @@
+spring:
+  profiles: eureka1
+  datasource:
+    initialization-mode: NEVER
 server:
   port: 8761
 eureka:
   instance:
-    hostname: localhost
-    prefer-ip-address: true #prefer to use ip for client
+    hostname: eureka1
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
+#below is the multiple configuration parameter mark, need to config the Active profile to run it separately
+---
 spring:
-  datasource:
-    initialization-mode: NEVER
+  profiles: eureka2
+eureka:
+  instance:
+    hostname: eureka2
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+        defaultZone: http://${eureka.instance.hostname}:8762/eureka/
+server:
+  port: 8762
