@@ -13,8 +13,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
  * @Description:
  */
 @SpringBootApplication
-@EnableAuthorizationServer
-@EnableResourceServer
+//@EnableAuthorizationServer
+//@EnableResourceServer
 public class AuthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthServiceApplication.class,args);
