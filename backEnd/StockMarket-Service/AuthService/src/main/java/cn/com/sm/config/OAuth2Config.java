@@ -50,8 +50,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String pwd = "123321";
-        String encoded = encoder.encode(pwd);
-        System.out.println(encoded);
-        System.out.println(encoder.matches(pwd,encoded));
+//        String encoded = encoder.encode(pwd);
+//        System.out.println(encoded);
+        System.out.println(encoder.matches(pwd,"$2a$10$yIusfHvjd7N5SIDq9o9cSu7nb4oqyyQZ20s1BEB1UzMd4yeEG3GAK"));
     }
 }

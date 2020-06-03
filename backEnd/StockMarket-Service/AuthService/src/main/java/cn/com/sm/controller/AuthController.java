@@ -53,18 +53,13 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResultBody login(@RequestParam("username") String username , @RequestParam("password") String password){
-        String encode = encoder.encode(password);
-        Iterable<UsersEntity> it = uService.getUsersByNameAndPassword(username,encode);
-        if(it.iterator().hasNext()){
-            UsersEntity user = it.iterator().next();
+        UsersEntity user = uService.getUserByUsername(username);
+        if(user!=null && encoder.matches(password,user.getPassword())){
             // 1 创建UsernamePasswordAuthenticationToken
 
-
-            System.out.println("encode pwd:"+encode);
-            System.out.println("db pwd:"+user.getPassword());
-            System.out.println("is pwd equal:"+encode.equals(user.getPassword()));
+            System.out.println("pwd from DB:"+user.getPassword());
             UsernamePasswordAuthenticationToken token
-                    = new UsernamePasswordAuthenticationToken(username, encode);
+                    = new UsernamePasswordAuthenticationToken(username, user.getPassword());
             // 2 认证
             Authentication authentication = authManager.authenticate(token);
             // 3 保存认证信息

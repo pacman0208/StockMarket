@@ -27,4 +27,8 @@ public class UserServiceImpl implements UserService {
         return userRepos.getUsersByUsernameAndPassword(name,password);
     }
 
+    @Override
+    public UsersEntity getUserByUsername(String username) {
+        return userRepos.findUserByUsername(username);
+    }
 }
