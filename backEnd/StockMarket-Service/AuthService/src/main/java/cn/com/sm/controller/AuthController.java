@@ -6,7 +6,10 @@ import cn.com.sm.service.UserService;
 import cn.com.sm.util.ResultBody;
 import cn.com.sm.util.ResultEnum;
 import cn.com.sm.util.TokenUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -29,6 +32,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    private static Logger LOG = LoggerFactory.getLogger(AuthController.class);
+
     private static final String KEY_USER = "user";
     private static final String KEY_AUTHORITIES = "authorities";
 
@@ -43,7 +48,8 @@ public class AuthController {
 
     @Resource
     private BCryptPasswordEncoder encoder;
-    @RequestMapping(value= {"/user"}, produces="application/json")
+
+    @RequestMapping(value= {"/user"}, produces="application/json",method = RequestMethod.GET)
     public Map<String, Object> auth(OAuth2Authentication user){
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put(KEY_USER, user.getUserAuthentication());
@@ -51,28 +57,38 @@ public class AuthController {
 
         return userInfo;
     }
+
+    @ResponseBody
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello , you have been authorized!";
+    }
     @PostMapping("/login")
     public ResultBody login(@RequestParam("username") String username , @RequestParam("password") String password){
-        UsersEntity user = uService.getUserByUsername(username);
-        if(user!=null && encoder.matches(password,user.getPassword())){
+//        UsersEntity user = uService.getUserByUsername(username);
+//        if(user!=null ){//&& encoder.matches(password,user.getPassword())){
             // 1 创建UsernamePasswordAuthenticationToken
 
-            System.out.println("pwd from DB:"+user.getPassword());
-            UsernamePasswordAuthenticationToken token
-                    = new UsernamePasswordAuthenticationToken(username, user.getPassword());
-            // 2 认证
-            Authentication authentication = authManager.authenticate(token);
-            // 3 保存认证信息
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            // 4 加载UserDetails
-            UserDetails details = authService.loadUserByUsername(username);
-
-            // 5 生成自定义token
-            String GenToken = TokenUtil.createToken(details);
             Map<String , String> tokenMap = new HashMap<>();
-            tokenMap.put("token",GenToken);
+            try{
+                UsernamePasswordAuthenticationToken token
+                        = new UsernamePasswordAuthenticationToken(username, password);
+                // 2 认证
+                Authentication authentication = authManager.authenticate(token);
+                // 3 保存认证信息
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                // 4 加载UserDetails
+                UserDetails details = authService.loadUserByUsername(username);
+
+                // 5 生成自定义token
+                String GenToken = TokenUtil.createToken(details);
+                tokenMap.put("token",GenToken);
+            }catch (BadCredentialsException e){
+                LOG.error(e.getMessage());
+                return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
+            }
             return ResultBody.success(tokenMap);
-        }
-        return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
+//        }
+//        return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
     }
 }

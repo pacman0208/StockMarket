@@ -11,30 +11,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.annotation.Resource;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    @Resource
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("user")
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password("admin")
-                .roles("ADMIN", "USER", "ANONYMOUS");
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-
-//				.antMatchers("/auth/**").permitAll()//.anyRequest().hasAnyRole("ANONYMOUS, USER")
-//                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers("/**").authenticated()
 //                .anyRequest().authenticated()
@@ -53,13 +47,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    private MyAuthTokenConfigurer securityConfigurerAdapter() {
+
+    @Bean
+    public MyAuthTokenConfigurer securityConfigurerAdapter() {
         return new MyAuthTokenConfigurer();
     }
 
-//    @Override
-//    @Bean
-//    public UserDetailsService userDetailsServiceBean() throws Exception {
-//        return super.userDetailsServiceBean();
-//    }
 }

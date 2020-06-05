@@ -1,5 +1,6 @@
 package cn.com.sm.config;
 
+import cn.com.sm.filter.TokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,30 +23,32 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Resource
-    private UserDetailsService userDetailsService;
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated");
-    }
 
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("cloudsimpleservice")
-                .authorizedGrantTypes("refesh_token","password","client_credentials")
-                .scopes("webclient","mobileclient");
-    }
-
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
-    }
+//
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
+//    @Resource
+//    private UserDetailsService userDetailsService;
+//    @Override
+//    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//        security.tokenKeyAccess("permitAll()")
+//                .checkTokenAccess("isAuthenticated");
+//    }
+//
+//    @Override
+//    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients.inMemory()
+//                .withClient("cloudsimpleservice")
+//                .authorizedGrantTypes("refesh_token","password","client_credentials")
+//                .scopes("webclient","mobileclient");
+//    }
+//
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        endpoints
+//                .authenticationManager(authenticationManager)
+//                .userDetailsService(userDetailsService);
+//    }
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

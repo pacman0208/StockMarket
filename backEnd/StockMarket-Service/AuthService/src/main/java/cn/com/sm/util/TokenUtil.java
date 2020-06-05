@@ -18,24 +18,13 @@ public class TokenUtil {
     private static final long EXPIRATION = 30L;//expiration - minutes
 
     public static Logger logger = LoggerFactory.getLogger(TokenUtil.class);
+
+
     /**
      * create token by user
      * @param user
      * @return
      */
-    public static String createToken(UsersEntity user){
-        if(user.getUsername()==null){
-            logger.error("Username is null for user entity");
-            throw new StockException(ResultEnum.SERVER_INTERNAL_ERRO);
-        }
-        JwtBuilder builder = Jwts.builder().setId(user.getUsername()).setSubject("session_token")
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(EXPIRATION*1000*60))
-                .signWith(SignatureAlgorithm.HS256,KEY);
-        return builder.compact();
-    }
-
-
     public static String createToken(UserDetails user){
         if(user.getUsername()==null){
             logger.error("Username is null for user entity");
@@ -43,7 +32,7 @@ public class TokenUtil {
         }
         JwtBuilder builder = Jwts.builder().setId(user.getUsername()).setSubject("session_token")
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(EXPIRATION*1000*60))
+                .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION*1000*60))
                 .signWith(SignatureAlgorithm.HS256,KEY);
         return builder.compact();
     }
