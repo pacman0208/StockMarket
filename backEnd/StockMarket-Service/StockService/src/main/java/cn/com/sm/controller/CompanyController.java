@@ -1,9 +1,8 @@
 package cn.com.sm.controller;
 
 import cn.com.sm.entity.CompanyEntity;
-import cn.com.sm.exception.StockException;
 import cn.com.sm.service.CompanyService;
-import cn.com.sm.util.ResultBody;
+import cn.com.sm.utils.ResultBody;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 

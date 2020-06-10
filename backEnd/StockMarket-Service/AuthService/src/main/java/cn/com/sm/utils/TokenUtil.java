@@ -1,12 +1,10 @@
-package cn.com.sm.util;
+package cn.com.sm.utils;
 
-import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.exception.StockException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import jdk.nashorn.internal.parser.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package cn.com.sm.exception;
 
-import cn.com.sm.util.BaseErrorInfo;
+import cn.com.sm.utils.BaseErrorInfo;
 
 import java.io.Serializable;
 

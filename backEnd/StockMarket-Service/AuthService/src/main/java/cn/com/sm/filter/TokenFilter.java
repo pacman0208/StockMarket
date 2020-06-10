@@ -1,7 +1,7 @@
 package cn.com.sm.filter;
 
 import cn.com.sm.service.AuthUserDetailService;
-import cn.com.sm.util.TokenUtil;
+import cn.com.sm.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

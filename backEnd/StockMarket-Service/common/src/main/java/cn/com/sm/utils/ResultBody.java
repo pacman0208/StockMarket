@@ -1,6 +1,5 @@
-package cn.com.sm.util;
+package cn.com.sm.utils;
 
-import cn.com.sm.exception.StockException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

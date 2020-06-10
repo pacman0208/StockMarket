@@ -2,7 +2,7 @@ package cn.com.sm.controller;
 
 import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.service.UserService;
-import cn.com.sm.util.ResultBody;
+import cn.com.sm.utils.ResultBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

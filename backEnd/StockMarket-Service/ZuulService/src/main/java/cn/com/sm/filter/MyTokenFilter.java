@@ -2,7 +2,7 @@ package cn.com.sm.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -16,7 +16,7 @@ public class MyTokenFilter extends GenericFilterBean {
 
     private final static String XAUTH_TOKEN_HEADER_NAME = "my-auth-token";
 
-    private UserDetailsService detailsService;
+//    private UserDetailsService detailsService;
 
 //    private TokenProvider tokenProvider;
     @Override

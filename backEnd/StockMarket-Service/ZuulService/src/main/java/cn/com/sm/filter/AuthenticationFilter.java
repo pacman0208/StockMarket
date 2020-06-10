@@ -42,6 +42,13 @@ public class AuthenticationFilter  extends ZuulFilter{//
     public Object run() throws ZuulException {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
+        System.out.println("request URI:"+request.getRequestURI());
+        if(request.getRequestURI().equals("/api/auth/login")){
+            context.setSendZuulResponse(true);// 对该请求进行路由
+            context.setResponseStatusCode(200);
+            context.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态
+            return null;
+        }
         String header = request.getHeader(AUTHORIZATION);
         if(StringUtils.isEmpty(header)) {
             // 请求头中没有，判断请求参数是否存在token信息

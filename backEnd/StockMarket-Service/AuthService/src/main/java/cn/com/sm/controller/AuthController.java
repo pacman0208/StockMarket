@@ -1,11 +1,10 @@
 package cn.com.sm.controller;
 
-import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.service.AuthUserDetailService;
 import cn.com.sm.service.UserService;
-import cn.com.sm.util.ResultBody;
-import cn.com.sm.util.ResultEnum;
-import cn.com.sm.util.TokenUtil;
+import cn.com.sm.utils.ResultBody;
+import cn.com.sm.utils.ResultEnum;
+import cn.com.sm.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;

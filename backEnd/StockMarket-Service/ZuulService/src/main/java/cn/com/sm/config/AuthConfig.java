@@ -3,13 +3,13 @@ package cn.com.sm.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+//import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 //
 //@Configuration
 //@EnableAuthorizationServer
-public class AuthConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthConfig {//extends AuthorizationServerConfigurerAdapter {
 //    @Bean
 //    public BCryptPasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
