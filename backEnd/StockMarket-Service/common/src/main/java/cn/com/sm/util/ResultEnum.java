@@ -1,4 +1,4 @@
-package cn.com.sm.utils;
+package cn.com.sm.util;
 
 public enum ResultEnum implements BaseErrorInfo{
     SUCCESS("200","success"),

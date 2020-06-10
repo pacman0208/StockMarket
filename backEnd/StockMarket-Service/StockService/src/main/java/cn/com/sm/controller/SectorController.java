@@ -1,7 +1,7 @@
 package cn.com.sm.controller;
 
 import cn.com.sm.service.SectorService;
-import cn.com.sm.utils.ResultBody;
+import cn.com.sm.util.ResultBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

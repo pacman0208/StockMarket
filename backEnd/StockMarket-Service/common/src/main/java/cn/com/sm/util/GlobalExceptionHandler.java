@@ -1,4 +1,4 @@
-package cn.com.sm.utils;
+package cn.com.sm.util;
 
 import cn.com.sm.exception.StockException;
 import org.slf4j.Logger;

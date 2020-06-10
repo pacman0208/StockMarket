@@ -1,6 +1,7 @@
 package cn.com.sm.utils;
 
 import cn.com.sm.exception.StockException;
+import cn.com.sm.util.ResultEnum;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
