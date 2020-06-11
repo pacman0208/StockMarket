@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import io.jsonwebtoken.SignatureException;
 import java.util.Date;
 
 public class TokenUtil {
@@ -41,8 +42,12 @@ public class TokenUtil {
      * @return
      */
     public static String getUsernameFromToken(String token){
-        Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
-        return claims.getId();
+        try {
+            Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+            return claims.getId();
+        }catch (SignatureException e){
+            throw new StockException(ResultEnum.TOKEN_INVALIDATE);
+        }
     }
 
     public static boolean validate(String token,UserDetails userDetails){

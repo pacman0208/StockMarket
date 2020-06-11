@@ -1,0 +1,20 @@
+node {
+   stage('git clone') { // for display purposes
+     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/pacman0208/StockMarket.git']]])
+   }
+   stage('Build') {
+           //env.JAVA_HOME="${tool 'jdk1.8.0_231'}"
+           withMaven(
+            maven: 'MAVEN',
+            mavenLocalRepo: 'D:\\Maven\\maven_repo') {
+                sh "mvn clean install -Dmaven.test.skip=true"
+        }
+   }
+   stage('deploy') {
+    sshagent(credentials: ['deploy_ssh_key']) {
+        sh 'ssh root@120.xx.95.105'
+        sh 'docker run -d -p 8080:8080 -v /home/data:/webapps --name search tomcat:9.0'
+        sh 'echo hello'        //sh 'scp producer/target/salesApp-1.0-RELEASES.jar  root@120.xx.95.105:/root/deploy/'
+     }
+   }
+}

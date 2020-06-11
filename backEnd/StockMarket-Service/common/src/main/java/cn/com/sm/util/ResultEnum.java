@@ -5,6 +5,7 @@ public enum ResultEnum implements BaseErrorInfo{
     NOT_FOUND("404","resource not found"),
     SERVER_INTERNAL_ERRO("500","server internal error"),
     CUSTOM_USER_PWD_NOT_FOUND("900","User/password not found"),
+    TOKEN_INVALIDATE("901","Token invalidate"),
     SERVER_BUSY("503","server busy");
 
 
