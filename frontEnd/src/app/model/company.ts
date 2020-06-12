@@ -2,7 +2,7 @@ export interface Company {
     id:string;
     companyName:string;
     stockCode:string;
-    turnOver:string;
+    turnover:string;
     ceo:string;
     //ipoDate:string;
     exchangeName:string;

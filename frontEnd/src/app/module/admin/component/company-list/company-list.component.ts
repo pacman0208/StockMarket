@@ -28,27 +28,29 @@ export class CompanyListComponent implements OnInit {
         
       }
     });
-    // this.companys.push({
-    //   code:'123321',
-    //   exchange:'BSE',
-    //   name:'Sina',
-    //   turnOver:'',
-    //   ceo:'',
-    //   sector:'',
-    //   ipoDate:'',
-    //   intro:''
-    // });
-    // this.companys.push({
-    //   code:'234432',
-    //   exchange:'nSE',
-    //   name:'Tencent',
-    //   turnOver:'',
-    //   ceo:'',
-    //   sector:'',
-    //   ipoDate:'',
-    //   intro:''
-    // });
+
   }
+
+  /**
+   * delete method
+   */
+  onDelete(id:string){
+    var api = this.BASE_URL+"/"+id;
+    if(confirm("Do you want to delete this company?")){
+      this.http.delete(api).subscribe((response:any)=>{
+        console.log(response);
+        if(response.code=='200'){
+          window.location.reload();
+        }
+      });
+    }else{
+      alert("quit delete!");
+    }
+    
+  }
+
+
+
 
   newExchange(){
     this.router.navigate(['admin/addCompany']);

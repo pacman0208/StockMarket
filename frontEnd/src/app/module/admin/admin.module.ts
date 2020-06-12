@@ -14,6 +14,7 @@ import { ExchangeListComponent } from './component/exchange-list/exchange-list.c
 import { AddExchangeComponent } from './component/add-exchange/add-exchange.component';
 import { HeaderComponent } from './component/header/header.component';
 import { LeftMenuComponent } from './component/left-menu/left-menu.component';
+import { CompanyDetailComponent } from './component/company-detail/company-detail.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LeftMenuComponent } from './component/left-menu/left-menu.component';
     ExchangeListComponent,
     AddExchangeComponent,
     HeaderComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    CompanyDetailComponent
   ],
   imports: [
     CommonModule,

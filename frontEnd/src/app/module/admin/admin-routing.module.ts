@@ -10,6 +10,7 @@ import { LandingComponent } from './component/landing/landing.component';
 import { CompanyListComponent } from './component/company-list/company-list.component';
 import { ExchangeListComponent } from './component/exchange-list/exchange-list.component';
 import { AddExchangeComponent } from './component/add-exchange/add-exchange.component';
+import { CompanyDetailComponent } from './component/company-detail/company-detail.component';
 
 const routes: Routes = [
   // {path:'addCompany',component:AddCompanyComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
       {path:'addExchange',component:AddExchangeComponent},
       {path:'exchangeList',component:ExchangeListComponent},
       {path:'importResult',component:ImportDataResultComponent},
+      {path:'companyDetail/:id',component:CompanyDetailComponent}
     ]
   },
   {

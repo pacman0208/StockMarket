@@ -20,7 +20,7 @@
             <td>{{c.stockCode}}</td>
             <td>{{c.exchangeName}}</td>
             <td>{{c.companyName}}</td>
-            <td>Detail</td>
+            <td><a [routerLink]="[ '/admin/companyDetail', c.id ]">Detail</a>&nbsp;<a (click)="onDelete(c.id)">Delete</a></td>
           </tr>
         </tbody>
     </table>

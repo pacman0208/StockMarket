@@ -23,7 +23,7 @@ export class AddCompanyComponent implements OnInit {
     id:'',
     companyName:'',
     stockCode:'',
-    turnOver:'',
+    turnover:'',
     ceo:'',
     //ipoDate:string;
     exchangeName:'',
