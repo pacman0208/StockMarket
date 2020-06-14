@@ -34,5 +34,9 @@
             <groupId>com.stock</groupId>
             <artifactId>common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.stock</groupId>
+            <artifactId>UserService</artifactId>
+        </dependency>
     </dependencies>
 </project>

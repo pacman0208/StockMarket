@@ -1,4 +1,4 @@
-package cn.com.sm.util;
+package cn.com.sm.utils;
 
 public interface BaseErrorInfo {
     String getCode();

@@ -1,7 +1,7 @@
-package cn.com.sm.utils;
+package cn.com.sm.util;
 
 import cn.com.sm.exception.StockException;
-import cn.com.sm.util.ResultEnum;
+import cn.com.sm.utils.ResultEnum;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -28,7 +28,7 @@ public class TokenUtil {
     public static String createToken(UserDetails user){
         if(user.getUsername()==null){
             logger.error("Username is null for user entity");
-            throw new StockException(ResultEnum.SERVER_INTERNAL_ERRO);
+            throw new StockException(ResultEnum.SERVER_INTERNAL_ERROR);
         }
         JwtBuilder builder = Jwts.builder().setId(user.getUsername()).setSubject("session_token")
                 .setIssuedAt(new Date())

@@ -1,7 +1,7 @@
 package cn.com.sm.filter;
 
 import cn.com.sm.service.AuthUserDetailService;
-import cn.com.sm.utils.TokenUtil;
+import cn.com.sm.util.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +24,7 @@ public class TokenFilter extends GenericFilterBean {
 
     private final Logger log = LoggerFactory.getLogger(TokenFilter.class);
 
-    private final static String TOKEN_HEADER_NAME = "token";
+    private final static String TOKEN_HEADER_NAME = "Authorization";
 
     @Resource
     private AuthUserDetailService detailsService; //= new AuthUserDetailService();

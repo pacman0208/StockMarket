@@ -1,4 +1,4 @@
-package cn.com.sm.util;
+package cn.com.sm.utils;
 
 import cn.com.sm.exception.StockException;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
             return ResultBody.error(ResultEnum.NOT_FOUND);
         }
-        return ResultBody.error(ResultEnum.SERVER_INTERNAL_ERRO);
+        return ResultBody.error(ResultEnum.SERVER_INTERNAL_ERROR);
 
     }
 

@@ -2,9 +2,9 @@ package cn.com.sm.controller;
 
 import cn.com.sm.service.AuthUserDetailService;
 import cn.com.sm.service.UserService;
-import cn.com.sm.util.ResultBody;
-import cn.com.sm.util.ResultEnum;
-import cn.com.sm.utils.TokenUtil;
+import cn.com.sm.utils.ResultBody;
+import cn.com.sm.utils.ResultEnum;
+import cn.com.sm.util.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +29,7 @@ import java.util.Map;
  * @Description:
  */
 @RestController
-@RequestMapping("/auth")
+//@RequestMapping("/auth")
 public class AuthController {
     private static Logger LOG = LoggerFactory.getLogger(AuthController.class);
 
@@ -62,6 +62,8 @@ public class AuthController {
     public String hello(){
         return "hello , you have been authorized!";
     }
+
+
     @PostMapping("/login")
     public ResultBody login(@RequestParam("username") String username , @RequestParam("password") String password){
 //        UsersEntity user = uService.getUserByUsername(username);

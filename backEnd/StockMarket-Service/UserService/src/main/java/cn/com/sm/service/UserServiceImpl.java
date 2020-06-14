@@ -2,10 +2,12 @@ package cn.com.sm.service;
 
 import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.repo.UserRepos;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.Iterator;
 import java.util.Optional;
 
 /**
@@ -16,6 +18,8 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserRepos userRepos;
 
+    @Resource
+    private BCryptPasswordEncoder encoder;
     /**
      * get all users entity
      * @return
@@ -26,12 +30,29 @@ public class UserServiceImpl implements UserService {
 
 
     /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public String loginCheck(String username,String password){
+        UsersEntity user = userRepos.getUsersByUsername(username);
+        if(user!=null){
+            if(encoder.matches(password,user.getPassword())){
+                return username;
+            }
+        }
+        return "";
+    }
+
+    /**
      * get user by username and password
      * @param name
      * @param password
      * @return
      */
     public  Iterable<UsersEntity> getUsersByNameAndPassword(String name,String password){
+
         return userRepos.getUsersByUsernameAndPassword(name,password);
     }
 
@@ -77,4 +98,11 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(int id){
         userRepos.deleteById(id);
     }
+
+    @Override
+    public UsersEntity getUserByName(String username) {
+        return userRepos.getUsersByUsername(username);
+    }
+
+
 }

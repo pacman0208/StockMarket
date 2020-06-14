@@ -1,11 +1,12 @@
-package cn.com.sm.util;
+package cn.com.sm.utils;
 
 public enum ResultEnum implements BaseErrorInfo{
     SUCCESS("200","success"),
     NOT_FOUND("404","resource not found"),
-    SERVER_INTERNAL_ERRO("500","server internal error"),
-    CUSTOM_USER_PWD_NOT_FOUND("900","User/password not found"),
+    SERVER_INTERNAL_ERROR("500","server internal error"),
+    CUSTOM_USER_PWD_NOT_FOUND("900","User/password is not correct"),
     TOKEN_INVALIDATE("901","Token invalidate"),
+    NOT_LOGIN("902","Please login first"),
     SERVER_BUSY("503","server busy");
 
 

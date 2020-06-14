@@ -2,13 +2,19 @@ package cn.com.sm.controller;
 
 import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.service.UserService;
-import cn.com.sm.util.ResultBody;
+import cn.com.sm.utils.ResultBody;
+import cn.com.sm.utils.ResultEnum;
+import cn.com.sm.utils.TokenUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 @RestController
 //@RequestMapping("/api/user")
@@ -19,6 +25,21 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @PostMapping("/login")
+    public ResultBody login(@RequestParam("username") String username , @RequestParam("password") String password){
+
+        Map<String , String> tokenMap = new HashMap<>();
+        String un = userService.loginCheck(username,password);
+        if(StringUtils.isEmpty(un)){
+           return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
+        }
+        UsersEntity user = new UsersEntity();
+        user.setUsername(un);
+        // generate token
+        String GenToken = TokenUtil.createToken(user);
+        tokenMap.put("token",GenToken);
+        return ResultBody.success(tokenMap);
+    }
     @PostMapping
     public ResultBody register(UsersEntity user){
         UsersEntity result = userService.registerUser(user);

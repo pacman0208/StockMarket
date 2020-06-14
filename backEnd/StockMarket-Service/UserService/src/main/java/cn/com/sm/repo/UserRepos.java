@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Iterator;
+
 public interface UserRepos extends JpaRepository<UsersEntity,Integer> {
     Iterable<UsersEntity> getUsersByUsernameAndPassword(String name,String password);
 
@@ -14,6 +16,6 @@ public interface UserRepos extends JpaRepository<UsersEntity,Integer> {
     @Query(value="update users u set u.confirmed='1',u.last_chg_tsp=CURRENT_TIMESTAMP where id=?",nativeQuery=true)
     int activateUser(@Param("id")Integer id);
 
-
+    UsersEntity getUsersByUsername(String username);
 
 }
