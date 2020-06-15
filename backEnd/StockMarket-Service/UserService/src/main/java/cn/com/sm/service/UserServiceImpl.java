@@ -1,6 +1,7 @@
 package cn.com.sm.service;
 
 import cn.com.sm.entity.UsersEntity;
+import cn.com.sm.utils.Constants;
 import cn.com.sm.repo.UserRepos;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -73,6 +74,8 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public UsersEntity registerUser(UsersEntity user){
+        user.setPassword(encoder.encode(user.getPassword()));
+        user.setUserType(Constants.USER_TYPE.USER.getType());
         return userRepos.saveAndFlush(user);
     }
 

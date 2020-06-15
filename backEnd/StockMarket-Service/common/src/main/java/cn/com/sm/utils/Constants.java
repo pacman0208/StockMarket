@@ -7,4 +7,23 @@ package cn.com.sm.utils;
  * @Description:
  */
 public class Constants {
+    public static enum USER_TYPE{
+        USER("0","USER"),ADMIN("1","ADMIN");
+        private String type;
+
+        private String type_name;
+
+        private USER_TYPE(String type,String type_name){
+            this.type = type;
+            this.type_name = type_name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getType_name() {
+            return type_name;
+        }
+    }
 }

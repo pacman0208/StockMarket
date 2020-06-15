@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
 import {MenuStoreageService} from '../../../../services/menu-storeage.service';
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
 import {User} from '../../../../model/User';
 @Component({
   selector: 'app-login',
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
     password : ''
   };
 
-  constructor(private router:Router,private menuSvc:MenuStoreageService) { }
+  constructor(private router:Router,private menuSvc:MenuStoreageService,private requestSvc:RequestService,private urlSvc:UrlService) { }
 
   ngOnInit(): void {
     this.menuSvc.removeMenuList();//clear menu list
@@ -30,6 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   login():void{
+    console.log(this.requestSvc.post(this.urlSvc.getUserURL()+'/login',this.user));
+    // console.log(this.requestSvc.get(this.urlSvc.getUserURL()+'/userList'));
     if(this.user.username==="test" && this.user.password==="111"){
       this.msg='';
       this.menuSvc.generateList();//generate menu item

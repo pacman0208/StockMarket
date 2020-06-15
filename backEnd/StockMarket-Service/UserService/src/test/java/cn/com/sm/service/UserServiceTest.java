@@ -50,7 +50,6 @@ public class UserServiceTest {
         user.setConfirmed("0");
         user.setUsername("lee");
         user.setPassword("123321");
-        user.setUserType("0");
         user.setCreateTsp(new Timestamp(new Date().getTime()));
         user.setLastChgTsp(new Timestamp(new Date().getTime()));
         System.out.println(userService.registerUser(user));
