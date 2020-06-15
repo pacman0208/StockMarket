@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {MenuStoreageService} from '../../../../services/menu-storeage.service';
 import {RequestService} from '../../../../services/request.service';
 import {UrlService} from '../../../../services/url.service';
+import {CommonService} from '../../../../services/common.service';
 import {User} from '../../../../model/User';
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     password : ''
   };
 
-  constructor(private router:Router,private menuSvc:MenuStoreageService,private requestSvc:RequestService,private urlSvc:UrlService) { }
+  constructor(private router:Router,private menuSvc:MenuStoreageService,private requestSvc:RequestService,private urlSvc:UrlService,private common:CommonService) { }
 
   ngOnInit(): void {
     this.menuSvc.removeMenuList();//clear menu list
@@ -32,15 +33,26 @@ export class LoginComponent implements OnInit {
   }
 
   login():void{
-    console.log(this.requestSvc.post(this.urlSvc.getUserURL()+'/login',this.user));
+     this.requestSvc.post(this.urlSvc.getUserURL()+'/login',this.user).then((resp:any)=>{
+      // console.log(resp);
+      console.log(resp.result);
+      if(resp.code=="200"){
+        this.common.setToken(resp.result.token);
+        this.msg='';
+        this.menuSvc.generateList();//generate menu item
+        this.router.navigate(['/user/userlanding']);
+      }else{
+        this.msg=resp.msg;
+      }
+     });
     // console.log(this.requestSvc.get(this.urlSvc.getUserURL()+'/userList'));
-    if(this.user.username==="test" && this.user.password==="111"){
-      this.msg='';
-      this.menuSvc.generateList();//generate menu item
-      this.router.navigate(['/user/userlanding']);
-    }else{
-      this.msg='username/password incorrect!';
-    }
+    // if(this.user.username==="test" && this.user.password==="111"){
+    //   this.msg='';
+    //   this.menuSvc.generateList();//generate menu item
+    //   this.router.navigate(['/user/userlanding']);
+    // }else{
+    //   this.msg='username/password incorrect!';
+    // }
   }
 
   toSignup():void{

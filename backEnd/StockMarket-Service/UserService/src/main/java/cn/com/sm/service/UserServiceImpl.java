@@ -1,8 +1,12 @@
 package cn.com.sm.service;
 
 import cn.com.sm.entity.UsersEntity;
+import cn.com.sm.exception.StockException;
 import cn.com.sm.utils.Constants;
 import cn.com.sm.repo.UserRepos;
+import cn.com.sm.utils.ResultEnum;
+import cn.com.sm.vo.UserVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -73,10 +77,17 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
-    public UsersEntity registerUser(UsersEntity user){
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setUserType(Constants.USER_TYPE.USER.getType());
-        return userRepos.saveAndFlush(user);
+    public UsersEntity registerUser(UserVO user){
+        if(!user.getPassword().equals(user.getConfirmPassword())){
+            throw new StockException(ResultEnum.PASSWORD_NOT_MATCH);
+        }
+        UsersEntity ue = new UsersEntity();
+        BeanUtils.copyProperties(user,ue);
+        ue.setPassword(encoder.encode(user.getPassword()));
+        ue.setUserType(Constants.USER_TYPE.USER.getType());
+        ue.setConfirmed("0");
+
+        return userRepos.saveAndFlush(ue);
     }
 
     /**

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import {MenuStoreageService} from './services/menu-storeage.service';
 import {RequestService} from './services/request.service';
 import {UrlService} from './services/url.service';
+import {CommonService} from './services/common.service';
 //import httpclient module
 import {HttpClientModule} from "@angular/common/http";
 import { Browser } from 'protractor';
@@ -32,13 +33,14 @@ import { Browser } from 'protractor';
     MenuStoreageService,
     RequestService,
     UrlService,
+    CommonService,
     {
       provide:'COMPANY_BASE_URL',
-      useValue:'http://localhost:8882/api/company'
+      useValue:'http://localhost:9999/api/company'
     },
     {
       provide:'SECTOR_BASE_URL',
-      useValue:'http://localhost:8882/api/sector'
+      useValue:'http://localhost:9999/api/sector'
     }
   ], 
   bootstrap: [AppComponent] //main view

@@ -7,6 +7,7 @@ public enum ResultEnum implements BaseErrorInfo{
     CUSTOM_USER_PWD_NOT_FOUND("900","User/password is not correct"),
     TOKEN_INVALIDATE("901","Token invalidate"),
     NOT_LOGIN("902","Please login first"),
+    PASSWORD_NOT_MATCH("903","Confirm password not match the original password"),
     SERVER_BUSY("503","server busy");
 
 

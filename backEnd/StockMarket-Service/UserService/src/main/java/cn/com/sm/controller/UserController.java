@@ -5,8 +5,10 @@ import cn.com.sm.service.UserService;
 import cn.com.sm.utils.ResultBody;
 import cn.com.sm.utils.ResultEnum;
 import cn.com.sm.utils.TokenUtil;
+import cn.com.sm.vo.UserVO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -26,10 +28,10 @@ public class UserController {
     private RestTemplate restTemplate;
 
     @PostMapping("/login")
-    public ResultBody login(@RequestParam("username") String username , @RequestParam("password") String password){
+    public ResultBody login(@RequestBody UsersEntity params){
 
         Map<String , String> tokenMap = new HashMap<>();
-        String un = userService.loginCheck(username,password);
+        String un = userService.loginCheck(params.getUsername(),params.getPassword());
         if(StringUtils.isEmpty(un)){
            return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
         }
@@ -40,8 +42,9 @@ public class UserController {
         tokenMap.put("token",GenToken);
         return ResultBody.success(tokenMap);
     }
+
     @PostMapping
-    public ResultBody register(UsersEntity user){
+    public ResultBody register(@RequestBody UserVO user){
         UsersEntity result = userService.registerUser(user);
         return ResultBody.success(result);
     }

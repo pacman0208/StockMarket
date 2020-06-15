@@ -1,6 +1,7 @@
 package cn.com.sm.service;
 
 import cn.com.sm.entity.UsersEntity;
+import cn.com.sm.vo.UserVO;
 
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ public interface UserService {
 
     UsersEntity getUserById(Integer id);
 
-    UsersEntity registerUser(UsersEntity user);
+    UsersEntity registerUser(UserVO user);
 
     UsersEntity update(UsersEntity user);
 

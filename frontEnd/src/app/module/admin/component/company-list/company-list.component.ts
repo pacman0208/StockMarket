@@ -3,7 +3,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import {Company} from '../../../../model/company'
 import {Router} from '@angular/router';
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
@@ -18,7 +18,11 @@ export class CompanyListComponent implements OnInit {
   }
   ngOnInit(): void {
     var api = this.BASE_URL+"/companyList";
-    this.http.get(api).subscribe((response:any)=>{
+    const headers = {
+      headers: new HttpHeaders({ 'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJsZWUiLCJzdWIiOiJzZXNzaW9uX3Rva2VuIiwiaWF0IjoxNTkyMjExMzU4LCJleHAiOjE1OTIyMTMxNTh9.Cs_cIjYohrbT5ZjSxvBrmknqttTXsqjeO3PYN3ctnjQ' })
+    }
+    
+    this.http.get(api,headers).subscribe((response:any)=>{
       console.log(response);
       if(response.code=='200'){
         response.result.forEach(e => {

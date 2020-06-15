@@ -1,11 +1,16 @@
 package cn.com.sm.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "mydb", catalog = "")
+@EntityListeners(AuditingEntityListener.class)
 public class UsersEntity {
     private int id;
     private String username;
@@ -90,6 +95,7 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "last_chg_tsp")
+    @LastModifiedDate
     public Timestamp getLastChgTsp() {
         return lastChgTsp;
     }
@@ -100,6 +106,7 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "create_tsp")
+    @CreatedDate
     public Timestamp getCreateTsp() {
         return createTsp;
     }

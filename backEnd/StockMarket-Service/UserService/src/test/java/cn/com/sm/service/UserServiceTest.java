@@ -2,6 +2,7 @@ package cn.com.sm.service;
 
 import cn.com.sm.UserServiceApplication;
 import cn.com.sm.entity.UsersEntity;
+import cn.com.sm.vo.UserVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -44,12 +45,13 @@ public class UserServiceTest {
 
     @Test
     public void testRegisterUser(){
-        UsersEntity user = new UsersEntity();
+        UserVO user = new UserVO();
         user.setMobileNumber("13800138000");
         user.setEmail("aaa@qq.com");
         user.setConfirmed("0");
         user.setUsername("lee");
         user.setPassword("123321");
+        user.setConfirmPassword("111");
         user.setCreateTsp(new Timestamp(new Date().getTime()));
         user.setLastChgTsp(new Timestamp(new Date().getTime()));
         System.out.println(userService.registerUser(user));

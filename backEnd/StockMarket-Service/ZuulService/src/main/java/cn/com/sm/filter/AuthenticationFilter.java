@@ -122,7 +122,7 @@ public class AuthenticationFilter  extends ZuulFilter{//
      * @return
      */
     private boolean isURLNeedAuth(String url,String method){
-        if(url.endsWith("/login")) {
+        if(url.endsWith("/login") || (url.endsWith("/user")&& method.equals("POST"))) {
             return false;
         }else if(url.endsWith("api/user") && method.equals("POST")){
             return false;
