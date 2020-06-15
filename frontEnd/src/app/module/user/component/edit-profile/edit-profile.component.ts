@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+
+import {MenuStoreageService} from '../../../../services/menu-storeage.service';
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
+import {CommonService} from '../../../../services/common.service';
 
 interface User{
   username:string;
@@ -18,9 +24,10 @@ export class EditProfileComponent implements OnInit {
     phone:"",
     email:""
   };
-  constructor() { }
+  constructor(private router:Router,private menuSvc:MenuStoreageService,private requestSvc:RequestService,private urlSvc:UrlService,private common:CommonService) { }
 
   ngOnInit(): void {
+    
   }
   onSubmit(){
     console.log(this.user);
