@@ -37,6 +37,14 @@ public class UserServiceTest {
         String pwd="123321";
         System.out.println(userService.loginCheck(username,pwd));
     }
+
+    @Test
+    public void adminLoginCheckTest(){
+
+        String username="lee";
+        String pwd="111";
+        System.out.println(userService.adminLoginCheck(username,pwd));
+    }
     @Test
     public void testGetUserById(){
         Integer id = 1;

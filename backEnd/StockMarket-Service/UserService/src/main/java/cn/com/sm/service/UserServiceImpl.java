@@ -50,6 +50,17 @@ public class UserServiceImpl implements UserService {
         return "";
     }
 
+    @Override
+    public String adminLoginCheck(String username, String password) {
+        UsersEntity user = userRepos.getAdminByUsername(username);
+        if(user!=null){
+            if(encoder.matches(password,user.getPassword())){
+                return username;
+            }
+        }
+        return "";
+    }
+
     /**
      * get user by username and password
      * @param name

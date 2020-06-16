@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Company} from '../../../../model/company';
 
-interface Company{
-  name:string;
-  exchange:string;
-  address:string;
-}
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
 @Component({
   selector: 'app-ipo',
   templateUrl: './ipo.component.html',
@@ -18,7 +16,7 @@ export class IpoComponent implements OnInit {
 
   exchangeSel:string;
 
-  constructor() {
+  constructor(private requestSvc:RequestService,private urlSvc:UrlService) {
    }
 
   ngOnInit(): void {
@@ -32,21 +30,28 @@ export class IpoComponent implements OnInit {
    * initial page data
    */
   initData(){
-    this.companys.push({
-      name:'Sina',
-      exchange:'BSE',
-      address:'BeiJing Wang Fu street #321'
+    console.log("initData()");
+    const api = this.urlSvc.getCompanyURL();
+    this.requestSvc.get(api+"/companyList").then((resp:any)=>{
+      console.log(resp);
     });
-    this.companys.push({
-      name:'Alibaba',
-      exchange:'NSE',
-      address:'Hang Zhou City XiHu Street #998'
-    });
-    this.companys.push({
-      name:'Tencent',
-      exchange:'NSE',
-      address:'ShenZhen City FuQiang Road #1314'
-    });
+
+    // this.companys.push({
+    //   name:'Sina',
+    //   exchange:'BSE',
+    //   address:'BeiJing Wang Fu street #321'
+    // });
+    // this.companys.push({
+    //   name:'Alibaba',
+    //   exchange:'NSE',
+    //   address:'Hang Zhou City XiHu Street #998'
+    // });
+    // this.companys.push({
+    //   name:'Tencent',
+    //   exchange:'NSE',
+    //   address:'ShenZhen City FuQiang Road #1314'
+    // });
+
     this.exchanges.push("NSE");
     this.exchanges.push("BSE");
   }

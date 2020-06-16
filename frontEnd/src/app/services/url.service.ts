@@ -14,4 +14,8 @@ export class UrlService {
   public getUserURL():string{
     return this.BASE_URL+this.USER_URL;
   }
+
+  public getCompanyURL():string{
+    return this.BASE_URL+this.COMPANY_URL;
+  }
 }

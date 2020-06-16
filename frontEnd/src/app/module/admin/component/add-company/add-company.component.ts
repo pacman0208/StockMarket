@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import { CompanyListComponent } from '../company-list/company-list.component';
 import { Sector } from 'src/app/model/sector';
 
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
@@ -33,7 +35,7 @@ export class AddCompanyComponent implements OnInit {
         sectorName:''
     }
   };
-  constructor(@Inject('COMPANY_BASE_URL') baseUrl,@Inject('SECTOR_BASE_URL') sbaseUrl,private router:Router, public http:HttpClient) {
+  constructor(@Inject('COMPANY_BASE_URL') baseUrl,@Inject('SECTOR_BASE_URL') sbaseUrl,private router:Router, public http:HttpClient,private reqSvc:RequestService,private url:UrlService) {
     this.BASE_URL = baseUrl;
     this.S_BASE_URL = sbaseUrl;
   }
@@ -51,19 +53,30 @@ export class AddCompanyComponent implements OnInit {
   }
 
   submitForm():void{
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    var api = this.BASE_URL;
-    const data:string = JSON.stringify(this.company);
-    this.http.post(api,this.company,httpOptions).subscribe((resp:any)=>{
-      console.log(resp.msg);
+    
+    var api = this.url.getCompanyURL();
+    this.reqSvc.post(api,this.company).then((resp:any)=>{
+      console.log(resp);
       if(resp.code=='200'){
-        this.router.navigate(['/admin/companyList']);
+        this.router.navigate(['/companyList']);
       }
-      if(resp.code=='500'){
+      else{
         this.msg = resp.msg;
       }
     });
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    // };
+    // var api = this.BASE_URL;
+    // const data:string = JSON.stringify(this.company);
+    // this.http.post(api,this.company,httpOptions).subscribe((resp:any)=>{
+    //   console.log(resp.msg);
+    //   if(resp.code=='200'){
+    //     this.router.navigate(['/admin/companyList']);
+    //   }
+    //   if(resp.code=='500'){
+    //     this.msg = resp.msg;
+    //   }
+    // });
   }
 }

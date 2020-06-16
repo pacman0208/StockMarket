@@ -30,6 +30,19 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @PostMapping("/admin/login")
+    public ResultBody adminLogin(@RequestBody UsersEntity params){
+        Map<String , String> tokenMap = new HashMap<>();
+        String uName = userService.adminLoginCheck(params.getUsername(),params.getPassword());
+        if(StringUtils.isEmpty(uName)){
+            return ResultBody.error(ResultEnum.CUSTOM_USER_PWD_NOT_FOUND);
+        }
+        UsersEntity user = userService.getUserByName(uName);
+        // generate token
+        String GenToken = TokenUtil.createToken(user);
+        tokenMap.put("token",GenToken);
+        return ResultBody.success(tokenMap);
+    }
     @PostMapping("/login")
     public ResultBody login(@RequestBody UsersEntity params){
 

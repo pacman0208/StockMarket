@@ -11,6 +11,10 @@ export class RequestService {
 
   constructor(private http:HttpClient,private url:UrlService,private common:CommonService) { }
 
+  /**
+   * get method
+   * @param api 
+   */
   get(api:string){
       var token = this.common.getToken();
       
@@ -24,7 +28,29 @@ export class RequestService {
       });
   }
 
+  /**
+   * put method
+   * @param api 
+   * @param obj 
+   */
   put(api:string,obj:any){
+    var token = this.common.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders().set('Content-Type','application/json').set('Authorization', token)
+    };
+    return new Promise((resolve,reject)=>{
+        this.http.put(api,obj,httpOptions).subscribe((response)=>{
+          resolve(response);
+        });
+    });
+  }
+
+  /**
+   * post method
+   * @param api 
+   * @param obj 
+   */
+  post(api:string,obj:any){
     var token = this.common.getToken();
     const httpOptions = {
       headers: new HttpHeaders().set('Content-Type','application/json').set('Authorization', token)
@@ -36,13 +62,18 @@ export class RequestService {
     });
   }
 
-  post(api:string,obj:any){
+    /**
+   * delete method
+   * @param api 
+   * @param obj 
+   */
+  delete(api:string){
     var token = this.common.getToken();
     const httpOptions = {
       headers: new HttpHeaders().set('Content-Type','application/json').set('Authorization', token)
     };
     return new Promise((resolve,reject)=>{
-        this.http.post(api,obj,httpOptions).subscribe((response)=>{
+        this.http.delete(api,httpOptions).subscribe((response)=>{
           resolve(response);
         });
     });

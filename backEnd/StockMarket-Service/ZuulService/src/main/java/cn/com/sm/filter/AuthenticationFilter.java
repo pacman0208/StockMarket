@@ -8,9 +8,11 @@ import cn.com.sm.utils.ResultEnum;
 import cn.com.sm.utils.TokenUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.ribbon.proxy.annotation.Http;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.ILoggerFactory;
@@ -74,14 +76,14 @@ public class AuthenticationFilter  extends ZuulFilter{//
             // 请求中不包含token信息，提示登录
             setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.NOT_LOGIN));
         }else{
-            //判断token信息是否正确
-            if(TokenUtil.isTokenExpired(token)){
-                setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.TOKEN_EXPIRED));
-                return null;
-            }
             // 从自定义tokenProvider中解析用户
             boolean isValidate = true;
             try {
+                //判断token信息是否正确
+                if(TokenUtil.isTokenExpired(token)){
+                    setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.TOKEN_EXPIRED));
+                    return null;
+                }
                 String username = TokenUtil.getUsernameFromToken(token);
                 // 这里仍然是调用我们自定义的UserDetailsService，查库，检查用户名是否存在，
                 // 如果是伪造的token,可能DB中就找不到username这个人了，抛出异常，认证失败
@@ -92,6 +94,9 @@ public class AuthenticationFilter  extends ZuulFilter{//
                 } else {
                     isValidate = false;
                 }
+            }catch(ExpiredJwtException e){
+                logger.error(e.getMessage());
+                setResponse(context, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,ResultBody.error(ResultEnum.TOKEN_EXPIRED));
             }catch (Exception e){
                 e.printStackTrace();
                 logger.error(e.getMessage());

@@ -24,4 +24,6 @@ public interface UserService {
 
     String loginCheck(String username,String password);
 
+    String adminLoginCheck(String username,String password);
+
 }

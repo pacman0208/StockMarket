@@ -3,6 +3,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import {Company} from '../../../../model/company'
 import {Router} from '@angular/router';
 
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'app-company-list',
@@ -12,17 +14,14 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 export class CompanyListComponent implements OnInit {
   companys:Company[] = [];
   BASE_URL:string='';
-  constructor(@Inject('COMPANY_BASE_URL') baseUrl:string,private router:Router,public http:HttpClient) { 
+  constructor(@Inject('COMPANY_BASE_URL') baseUrl:string,private router:Router,public http:HttpClient,private reqSvc:RequestService,private url:UrlService) { 
     this.BASE_URL = baseUrl;
     
   }
   ngOnInit(): void {
-    var api = this.BASE_URL+"/companyList";
-    const headers = {
-      headers: new HttpHeaders({ 'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJsZWUiLCJzdWIiOiJzZXNzaW9uX3Rva2VuIiwiaWF0IjoxNTkyMjExMzU4LCJleHAiOjE1OTIyMTMxNTh9.Cs_cIjYohrbT5ZjSxvBrmknqttTXsqjeO3PYN3ctnjQ' })
-    }
+    var api = this.url.getCompanyURL()+"/companyList";
     
-    this.http.get(api,headers).subscribe((response:any)=>{
+    this.reqSvc.get(api).then((response:any)=>{
       console.log(response);
       if(response.code=='200'){
         response.result.forEach(e => {
@@ -32,6 +31,7 @@ export class CompanyListComponent implements OnInit {
         
       }
     });
+    
 
   }
 
@@ -41,12 +41,18 @@ export class CompanyListComponent implements OnInit {
   onDelete(id:string){
     var api = this.BASE_URL+"/"+id;
     if(confirm("Do you want to delete this company?")){
-      this.http.delete(api).subscribe((response:any)=>{
-        console.log(response);
-        if(response.code=='200'){
+      this.reqSvc.delete(api).then((resp:any)=>{
+        console.log(resp);
+        if(resp.code=='200'){
           window.location.reload();
         }
       });
+      // this.http.delete(api).subscribe((response:any)=>{
+      //   console.log(response);
+      //   if(response.code=='200'){
+      //     window.location.reload();
+      //   }
+      // });
     }else{
       alert("quit delete!");
     }

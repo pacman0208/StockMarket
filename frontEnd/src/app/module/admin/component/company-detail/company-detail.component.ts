@@ -3,6 +3,10 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Sector } from 'src/app/model/sector';
 import { Company } from 'src/app/model/company';
 import {Router,ActivatedRoute} from '@angular/router';
+
+
+import {RequestService} from '../../../../services/request.service';
+import {UrlService} from '../../../../services/url.service';
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
@@ -31,23 +35,30 @@ export class CompanyDetailComponent implements OnInit {
         sectorName:''
     }
   };
-  constructor(@Inject('COMPANY_BASE_URL') baseUrl,@Inject('SECTOR_BASE_URL') sbaseUrl,private router:ActivatedRoute, public http:HttpClient) {
-    this.BASE_URL = baseUrl;
+  constructor(@Inject('SECTOR_BASE_URL') sbaseUrl,private router:ActivatedRoute,private r:Router, public http:HttpClient,private reqSvc:RequestService,private url:UrlService) {
+    
   }
 
   ngOnInit(): void {
     this.router.params.subscribe((data)=>{
       
-      var api = this.BASE_URL+"/"+data.id;
-      this.http.get(api).subscribe((response:any)=>{
-        console.log(response);
-        console.log(response.code);
-        this.company = response.result;
-      });
+      var api = this.url.getCompanyURL()+"/"+data.id;
+      this.reqSvc.get(api).then((resp:any)=>{
+        
+        console.log(resp);
+        console.log(resp.code);
+        this.company = resp.result;
+      })
+      // this.http.get(api).subscribe((response:any)=>{
+      //   console.log(response);
+      //   console.log(response.code);
+      //   this.company = response.result;
+      // });
     });
   }
 
 
-  submitForm():void{}
+  submitForm():void{
+  }
 
 }
