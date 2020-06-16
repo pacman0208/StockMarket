@@ -2,6 +2,7 @@ package cn.com.sm.filter;
 
 import cn.com.sm.entity.UsersEntity;
 import cn.com.sm.service.UserService;
+import cn.com.sm.utils.Constants;
 import cn.com.sm.utils.ResultBody;
 import cn.com.sm.utils.ResultEnum;
 import cn.com.sm.utils.TokenUtil;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter  extends ZuulFilter{//
-    public static final String AUTHORIZATION = "Authorization";
+    public static final String AUTHORIZATION = Constants.AUTHORIZATION;
     private Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
     @Resource
@@ -71,16 +72,13 @@ public class AuthenticationFilter  extends ZuulFilter{//
 
         if (StringUtils.isEmpty(token)) {
             // 请求中不包含token信息，提示登录
-            context.setResponseStatusCode(HttpServletResponse.SC_UNAUTHORIZED);
-            try {
-                String responseBody = objectMapper.writeValueAsString(ResultBody.error(ResultEnum.NOT_LOGIN));
-                context.setResponseBody(responseBody);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-
+            setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.NOT_LOGIN));
         }else{
             //判断token信息是否正确
+            if(TokenUtil.isTokenExpired(token)){
+                setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.TOKEN_EXPIRED));
+                return null;
+            }
             // 从自定义tokenProvider中解析用户
             boolean isValidate = true;
             try {
@@ -102,17 +100,21 @@ public class AuthenticationFilter  extends ZuulFilter{//
             if(!isValidate){
 //                context.setResponseStatusCode(HttpServletResponse.SC_UNAUTHORIZED);
 //                context.setResponseBody("Invalidate token!");
-                context.setResponseStatusCode(HttpServletResponse.SC_UNAUTHORIZED);
-                try {
-                    String responseBody = objectMapper.writeValueAsString(ResultBody.error(ResultEnum.TOKEN_INVALIDATE));
-                    context.setResponseBody(responseBody);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                    logger.error(e.getMessage());
-                }
+                setResponse(context,HttpServletResponse.SC_UNAUTHORIZED,ResultBody.error(ResultEnum.TOKEN_INVALIDATE));
             }
         }
         return null;
+    }
+
+    private void setResponse(RequestContext context,int statusCode,ResultBody resultBody) {
+        context.setResponseStatusCode(statusCode);
+        try {
+            String responseBody = objectMapper.writeValueAsString(resultBody);
+            context.setResponseBody(responseBody);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
     }
 
     /**

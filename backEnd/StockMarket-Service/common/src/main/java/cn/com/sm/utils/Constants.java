@@ -7,6 +7,7 @@ package cn.com.sm.utils;
  * @Description:
  */
 public class Constants {
+    public static final String AUTHORIZATION = "Authorization";
     public static enum USER_TYPE{
         USER("0","USER"),ADMIN("1","ADMIN");
         private String type;

@@ -12,14 +12,14 @@ import { LogoutComponent } from './component/logout/logout.component';
 import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
 import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
 
-
+import {LoginGuardGuard} from './guard/login-guard.guard';
 const routes: Routes = [
   
   {
     path:'',
     component:UserComponent,
     children:[
-      {path:"signup",component:SignupComponent},
+      {path:"signup",component:SignupComponent,canActivate:[LoginGuardGuard]},
       {path:"login",component:LoginComponent},
       {path:"userlanding",component:UserlandingComponent},
       {path:"ipo",component:IpoComponent},
@@ -29,6 +29,7 @@ const routes: Routes = [
       {path:"signupConfirm",component:SignupConfirmComponent},
       {path:"compareDetail",component:CompareDetailComponent}
     ]
+    
   },
   {
     path:"**",redirectTo:'login'

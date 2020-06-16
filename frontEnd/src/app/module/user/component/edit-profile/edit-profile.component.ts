@@ -18,18 +18,36 @@ interface User{
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  public user:User={
+  public msg:string = '';
+
+  public user:any={
     username:"",
     password:"",
-    phone:"",
+    mobileNumber:"",
     email:""
   };
   constructor(private router:Router,private menuSvc:MenuStoreageService,private requestSvc:RequestService,private urlSvc:UrlService,private common:CommonService) { }
 
   ngOnInit(): void {
-    
+    const api = this.urlSvc.getUserURL();
+    this.requestSvc.get(api).then((resp:any)=>{
+      console.log(resp);
+      if(resp.code=='200'){
+        this.user = resp.result;
+      }
+      
+    });
   }
   onSubmit(){
     console.log(this.user);
+    const api = this.urlSvc.getUserURL();
+    this.requestSvc.put(api,this.user).then((resp:any)=>{
+      
+      console.log(resp);
+      if(resp.code=='200'){
+        this.user = resp.result;
+        this.msg='update successfully!';
+      }
+    });
   }
 }

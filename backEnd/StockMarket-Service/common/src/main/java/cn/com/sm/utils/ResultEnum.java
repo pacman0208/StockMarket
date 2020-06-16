@@ -8,6 +8,7 @@ public enum ResultEnum implements BaseErrorInfo{
     TOKEN_INVALIDATE("901","Token invalidate"),
     NOT_LOGIN("902","Please login first"),
     PASSWORD_NOT_MATCH("903","Confirm password not match the original password"),
+    TOKEN_EXPIRED("904","Token has expired"),
     SERVER_BUSY("503","server busy");
 
 

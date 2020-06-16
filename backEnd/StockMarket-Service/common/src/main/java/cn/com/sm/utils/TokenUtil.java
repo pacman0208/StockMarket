@@ -30,9 +30,9 @@ public class TokenUtil {
             throw new StockException(ResultEnum.SERVER_INTERNAL_ERROR);
         }
         Map<String,Object> map = new HashMap<>();
-        map.put(USERNAME,user.getUsername());
+//        map.put(USERNAME,user.getUsername());
         map.put(ID,user.getId());
-        JwtBuilder builder = Jwts.builder().setClaims(map).setSubject("session_token")
+        JwtBuilder builder = Jwts.builder().setClaims(map).setSubject(user.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION*1000*60))
                 .signWith(SignatureAlgorithm.HS256,KEY);
@@ -43,10 +43,10 @@ public class TokenUtil {
      * @param token
      * @return
      */
-    public static String getAttrFromToken(String token){
+    public static String getAttrFromToken(String token,String key){
         try {
-            Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
-            return claims.get(USERNAME).toString();
+            Claims claims = getClaimsFromToken(token);
+            return claims.get(key).toString();
         }catch (SignatureException e){
             throw new StockException(ResultEnum.TOKEN_INVALIDATE);
         }
@@ -59,30 +59,62 @@ public class TokenUtil {
      */
     public static String getIdFromToken(String token){
         try {
-            Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
-            return claims.getId();
+            return getAttrFromToken(token,ID);
         }catch (SignatureException e){
             throw new StockException(ResultEnum.TOKEN_INVALIDATE);
         }
 
     }
 
+    /**
+     * validate username in token same as the given user
+     * @param token
+     * @param userDetails
+     * @return
+     */
     public static boolean validate(String token,UsersEntity userDetails){
-        Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
-        String userName = claims.getId();
+        String userName = getUsernameFromToken(token);
         if(userName!=null && userName.equals(userDetails.getUsername())){
             return true;
         }
         return false;
     }
 
+    /**
+     * get claims from token
+     * @param token
+     * @return
+     */
+    private static Claims getClaimsFromToken(String token) {
+        return Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+    }
+
+    /**
+     * get username from token
+     * @param token
+     * @return
+     */
+    public static String getUsernameFromToken(String token){
+        return getClaimsFromToken(token).getSubject();
+    }
+
+    /**
+     * is token expired
+     * @param token
+     * @return
+     */
+    public static boolean isTokenExpired(String token){
+        Date expire = getClaimsFromToken(token).getExpiration();
+        return new Date().after(expire);
+    }
     public static void main(String[] args) {
         UsersEntity user = new UsersEntity();
         user.setId(123);
         user.setUsername("jack");
-        String token = createToken(user);
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWUiLCJpZCI6MSwiZXhwIjoxNTkyMjc1NjUzLCJpYXQiOjE1OTIyNzM4NTN9.Tgvfi3wnO2hPofNpj1t7lNH6YO9MxidzUX4byBFf8sE";
         System.out.println("token:"+token);
         System.out.println("id from token:"+getIdFromToken(token));
         System.out.println("name from token:"+getUsernameFromToken(token));
+        System.out.println("is token expired:"+isTokenExpired(token));
     }
 }

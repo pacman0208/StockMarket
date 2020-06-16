@@ -16,7 +16,7 @@ public interface UserService {
 
     UsersEntity registerUser(UserVO user);
 
-    UsersEntity update(UsersEntity user);
+    UsersEntity update(UserVO user);
 
     UsersEntity activateUser(int id) throws Exception;
 

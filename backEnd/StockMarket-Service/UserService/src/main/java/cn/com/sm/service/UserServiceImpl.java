@@ -95,8 +95,18 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
-    public UsersEntity update(UsersEntity user){
-        return userRepos.save(user);
+    public UsersEntity update(UserVO user){
+        if(!user.getPassword().equals(user.getConfirmPassword())){
+            throw new StockException(ResultEnum.PASSWORD_NOT_MATCH);
+        }
+        UsersEntity dbU = getUserByName(user.getUsername());
+        dbU.setPassword(user.getPassword());
+        dbU.setEmail(user.getEmail());
+        dbU.setMobileNumber(user.getMobileNumber());
+        UsersEntity ue = new UsersEntity();
+        BeanUtils.copyProperties(dbU,ue);
+        ue.setPassword(encoder.encode(user.getPassword()));
+        return userRepos.save(ue);
     }
 
     @Override

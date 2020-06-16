@@ -24,6 +24,18 @@ export class RequestService {
       });
   }
 
+  put(api:string,obj:any){
+    var token = this.common.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders().set('Content-Type','application/json').set('Authorization', token)
+    };
+    return new Promise((resolve,reject)=>{
+        this.http.post(api,obj,httpOptions).subscribe((response)=>{
+          resolve(response);
+        });
+    });
+  }
+
   post(api:string,obj:any){
     var token = this.common.getToken();
     const httpOptions = {
