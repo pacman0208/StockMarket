@@ -20,18 +20,18 @@
                     <thead >
                       <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Stock code</th>
                         <th scope="col">Company name</th>
                         <th scope="col">Stock exchange</th>
-                        <th scope="col">Address</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let c of companys;let i=index">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{c.name}}</td>
-                        <td>{{c.exchange}}</td>
-                        <td>{{c.address}}</td>
+                        <td>{{c.stockCode}}</td>
+                        <td>{{c.companyName}}</td>
+                        <td>{{c.exchangeName}}</td>
                         <td>Detail</td>
                       </tr>
                     </tbody>

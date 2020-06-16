@@ -59,6 +59,15 @@ export class CompanyDetailComponent implements OnInit {
 
 
   submitForm():void{
+    const api = this.url.getCompanyURL();
+    this.reqSvc.put(api,this.company).then((resp:any)=>{
+        console.log(resp);
+        if(resp.code=='200'){
+          this.r.navigate(['/admin/companyList']);
+        }else{
+          this.msg = resp.msg;
+        }
+    });
   }
 
 }

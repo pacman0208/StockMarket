@@ -43,6 +43,10 @@ public class CompanyController {
         return ResultBody.success();
     }
 
+    @PutMapping
+    public ResultBody update(@RequestBody CompanyEntity company){
+        return ResultBody.success(companyService.update(company));
+    }
     @Value("${server.port}")
     /**
      * add this attribute to enable ribbon found service by service name

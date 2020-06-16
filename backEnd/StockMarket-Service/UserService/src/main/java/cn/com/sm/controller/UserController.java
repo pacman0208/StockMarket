@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResultBody update(UserVO user){
+    public ResultBody update(@RequestBody  UserVO user){
         UsersEntity result = userService.update(user);
         return ResultBody.success(result);
     }

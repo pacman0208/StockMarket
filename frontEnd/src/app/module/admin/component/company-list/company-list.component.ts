@@ -20,7 +20,7 @@ export class CompanyListComponent implements OnInit {
   }
   ngOnInit(): void {
     var api = this.url.getCompanyURL()+"/companyList";
-    
+    this.companys = [];
     this.reqSvc.get(api).then((response:any)=>{
       console.log(response);
       if(response.code=='200'){
@@ -44,7 +44,8 @@ export class CompanyListComponent implements OnInit {
       this.reqSvc.delete(api).then((resp:any)=>{
         console.log(resp);
         if(resp.code=='200'){
-          window.location.reload();
+          // window.location.reload();
+          this.ngOnInit();
         }
       });
       // this.http.delete(api).subscribe((response:any)=>{

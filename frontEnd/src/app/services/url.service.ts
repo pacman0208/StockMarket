@@ -8,6 +8,7 @@ export class UrlService {
 
   public COMPANY_URL:string = '/api/company';
 
+  public SECTOR_URL:string = "/api/sector"
   public BASE_URL:String = 'http://localhost:9999'
   constructor() { }
 
@@ -17,5 +18,9 @@ export class UrlService {
 
   public getCompanyURL():string{
     return this.BASE_URL+this.COMPANY_URL;
+  }
+
+  public getSectorURL():string{
+    return this.getCompanyURL()+this.SECTOR_URL;
   }
 }

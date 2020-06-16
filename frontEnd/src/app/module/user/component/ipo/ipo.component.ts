@@ -34,6 +34,13 @@ export class IpoComponent implements OnInit {
     const api = this.urlSvc.getCompanyURL();
     this.requestSvc.get(api+"/companyList").then((resp:any)=>{
       console.log(resp);
+      if(resp.code=='200'){
+        resp.result.forEach(e => {
+          this.companys.push(e);
+        });
+        // this.companys = resp.result;
+      }
+      console.log(this.companys);
     });
 
     // this.companys.push({
@@ -52,7 +59,7 @@ export class IpoComponent implements OnInit {
     //   address:'ShenZhen City FuQiang Road #1314'
     // });
 
-    this.exchanges.push("NSE");
-    this.exchanges.push("BSE");
+    this.exchanges.push("Company");
+    this.exchanges.push("IPO");
   }
 }

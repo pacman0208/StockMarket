@@ -41,15 +41,26 @@ export class AddCompanyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var api = this.S_BASE_URL;
-    this.http.get(api).subscribe((resp:any)=>{
+    // var api = this.S_BASE_URL;
+    var api = this.url.getSectorURL();
+
+    this.reqSvc.get(api).then((resp:any)=>{
       if(resp.code=='200'){
         resp.result.forEach(e => {
           this.sectors.push(e);
         });
         console.log(JSON.stringify(this.sectors));
       }
+
     });
+    // this.http.get(api).subscribe((resp:any)=>{
+    //   if(resp.code=='200'){
+    //     resp.result.forEach(e => {
+    //       this.sectors.push(e);
+    //     });
+    //     console.log(JSON.stringify(this.sectors));
+    //   }
+    // });
   }
 
   submitForm():void{
@@ -58,7 +69,7 @@ export class AddCompanyComponent implements OnInit {
     this.reqSvc.post(api,this.company).then((resp:any)=>{
       console.log(resp);
       if(resp.code=='200'){
-        this.router.navigate(['/companyList']);
+        this.router.navigate(['/admin/companyList']);
       }
       else{
         this.msg = resp.msg;
