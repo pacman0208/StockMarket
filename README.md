@@ -16,6 +16,9 @@
         <p>StockService is used for stock/company related services.</p>
         <p>UserService is used for user related services.</p>
     </li>
+    
+    <li>Docker file added for euraka service located in backEnd folder.</li>
+    <li>Jmeter file add in JMeter folder.</li>
 </ul>
 
 
