@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class TokenUtil {
     private static final String KEY = "hellostockmarket";
-    private static final long EXPIRATION = 30L;//expiration - minutes
+    private static final long EXPIRATION = 60L;//expiration - minutes
     public static final String USERNAME = "username";
     public static final String ID = "id";
 

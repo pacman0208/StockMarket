@@ -1,12 +1,17 @@
 spring:
+  profiles:
+    active: eureka1
+
+---
+spring:
   application:
     name: eureka_service
   profiles: eureka1
   datasource:
     initialization-mode: NEVER
 server:
+  eureka:
   port: 8761
-eureka:
   instance:
     hostname: eureka1
   client:

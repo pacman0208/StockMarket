@@ -32,7 +32,7 @@
                         <td>{{c.stockCode}}</td>
                         <td>{{c.companyName}}</td>
                         <td>{{c.exchangeName}}</td>
-                        <td>Detail</td>
+                        <td><a [routerLink]="[ '/user/companyDetail', c.id ]">Detail</a></td>
                       </tr>
                     </tbody>
                 </table>

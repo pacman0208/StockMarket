@@ -1,0 +1,45 @@
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+      <div class="row justify-content-md-center">
+          
+          <div class="col-md-auto">
+              <h1 class="mt-5">Stock Management system user page</h1>
+              <p>current-location: Company Detail</p>
+              <hr>
+          <div class="form-group">
+            <dl class="row">
+                <dt class="col-sm-3">Company name</dt>
+                <dd class="col-sm-9">{{company.companyName}}</dd>
+              
+                <dt class="col-sm-3">Stock code</dt>
+                <dd class="col-sm-9">
+                  <p>{{company.stockCode}}</p>
+                </dd>
+              
+                <dt class="col-sm-3">Exchange name</dt>
+                <dd class="col-sm-9">{{company.exchangeName}}</dd>
+              
+                <dt class="col-sm-3 text-truncate">sectorName</dt>
+                <dd class="col-sm-9">{{company.sectorsBySectorsId.sectorName}}</dd>
+              
+                <dt class="col-sm-3">Turnover</dt>
+                <dd class="col-sm-9">{{company.turnover}}</dd>
+                
+                <dt class="col-sm-3">CEO</dt>
+                <dd class="col-sm-9">{{company.ceo}}</dd>
+                
+                <dt class="col-sm-3">Brief Introduction</dt>
+                <dd class="col-sm-9">{{company.briefIntro}}</dd>
+                
+                
+            </dl>
+          </div>
+          
+          <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="back()">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

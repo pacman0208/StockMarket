@@ -11,6 +11,8 @@ import { EditProfileComponent } from './component/edit-profile/edit-profile.comp
 import { LogoutComponent } from './component/logout/logout.component';
 import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
 import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
+import { CompanyDetailComponent } from './component/company-detail/company-detail.component';
+
 
 import {LoginGuardGuard} from './guard/login-guard.guard';
 const routes: Routes = [
@@ -19,15 +21,16 @@ const routes: Routes = [
     path:'',
     component:UserComponent,
     children:[
-      {path:"signup",component:SignupComponent,canActivate:[LoginGuardGuard]},
+      {path:"signup",component:SignupComponent},
       {path:"login",component:LoginComponent},
-      {path:"userlanding",component:UserlandingComponent},
-      {path:"ipo",component:IpoComponent},
-      {path:"compare",component:CompareComponent},
-      {path:"edit-profile",component:EditProfileComponent},
+      {path:"userlanding",component:UserlandingComponent,canActivate:[LoginGuardGuard]},
+      {path:"ipo",component:IpoComponent,canActivate:[LoginGuardGuard]},
+      {path:"compare",component:CompareComponent,canActivate:[LoginGuardGuard]},
+      {path:"edit-profile",component:EditProfileComponent,canActivate:[LoginGuardGuard]},
       {path:"logout",component:LogoutComponent},
       {path:"signupConfirm",component:SignupConfirmComponent},
-      {path:"compareDetail",component:CompareDetailComponent}
+      {path:"compareDetail",component:CompareDetailComponent,canActivate:[LoginGuardGuard]},
+      {path:"companyDetail/:id",component:CompanyDetailComponent}
     ]
     
   },

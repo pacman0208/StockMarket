@@ -16,6 +16,8 @@ import { EditProfileComponent } from './component/edit-profile/edit-profile.comp
 import { LogoutComponent } from './component/logout/logout.component';
 import { SignupConfirmComponent } from './component/signup-confirm/signup-confirm.component';
 import { CompareDetailComponent } from './component/compare-detail/compare-detail.component';
+import { IpoDetailComponent } from './component/ipo-detail/ipo-detail.component';
+import { CompanyDetailComponent } from './component/company-detail/company-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CompareDetailComponent } from './component/compare-detail/compare-detai
     EditProfileComponent,
     LogoutComponent,
     SignupConfirmComponent,
-    CompareDetailComponent],
+    CompareDetailComponent,
+    IpoDetailComponent,
+    CompanyDetailComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
